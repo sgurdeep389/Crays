@@ -1059,7 +1059,7 @@ struct ContentView: View {
     
     private var mainHeaderView: some View {
         HStack(spacing: 0) {
-            Text("Crays circle/")
+            Text("Crays Circle/")
                 .font(.custom("Poppins-Medium", size: 18))
                 .foregroundColor(textColor)
                 .onTapGesture(count: 3) {

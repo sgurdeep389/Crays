@@ -82,7 +82,7 @@ struct CraysApp: App {
     }
     
     private func handleURL(_ url: URL) {
-        if url.scheme == "Crays circle" && url.host == "share" {
+        if url.scheme == "Crays Circle" && url.host == "share" {
             // Handle shared content
             checkForSharedContent()
         }

@@ -18,7 +18,7 @@ struct AppInfoView: View {
     
     // MARK: - Constants
     private enum Strings {
-        static let appName = "Crays circle"
+        static let appName = "Crays Circle"
         static let tagline = "sidegroupchat"
         
         enum Features {

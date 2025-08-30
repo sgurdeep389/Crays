@@ -3165,7 +3165,7 @@ class ChatViewModel: ObservableObject, CraysDelegate {
         // Not cached, format the message
         var result = AttributedString()
         
-        let baseColor: Color = isSelf ? .red : peerColor(for: message, isDark: isDark)
+        let baseColor: Color = isSelf ? .black : peerColor(for: message, isDark: isDark)
         
         if message.sender != "system" {
             // Sender (at the beginning) with light-gray suffix styling if present

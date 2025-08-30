@@ -879,7 +879,7 @@
 				DEVELOPMENT_TEAM = X644BD447L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Crays/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Crays;
+				INFOPLIST_KEY_CFBundleDisplayName = "Crays Circle";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -912,7 +912,7 @@
 				DEVELOPMENT_TEAM = X644BD447L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Crays/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Crays;
+				INFOPLIST_KEY_CFBundleDisplayName = "Crays Circle";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
