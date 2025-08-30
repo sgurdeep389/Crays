@@ -4,10 +4,60 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Crays.xcscheme_^#shared#^_</key>
+		<key>CraysShareExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Crays_iOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>bitchatShareExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>bitchat_iOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>bitchat_macOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0576A29205865664C0937536</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47FF23248747DD7CB666CB91</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>57CA17A36A2532A6CFF367BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6CB97DF2EA57234CB3E563B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF077EA0474EDEDE2C72716C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

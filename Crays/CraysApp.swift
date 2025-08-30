@@ -1,8 +1,9 @@
 //
-//  CraysApp.swift
-//  Crays
+// CraysApp.swift
+// Crays
 //
-//  Created by Gurdeep Singh  on 07/08/25.
+// This is free and unencumbered software released into the public domain.
+// For more information, see <https://unlicense.org>
 //
 
 import SwiftUI
@@ -12,6 +13,7 @@ import UserNotifications
 struct CraysApp: App {
     @StateObject private var chatViewModel = ChatViewModel()
     #if os(iOS)
+    @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     #elseif os(macOS)
     @NSApplicationDelegateAdaptor(MacAppDelegate.self) var appDelegate
@@ -19,14 +21,23 @@ struct CraysApp: App {
     
     init() {
         UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
+        // Warm up georelay directory and refresh if stale (once/day)
+        GeoRelayDirectory.shared.prefetchIfNeeded()
     }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(self.chatViewModel)
+                .environmentObject(chatViewModel)
                 .onAppear {
                     NotificationDelegate.shared.chatViewModel = chatViewModel
+                    // Inject live Noise service into VerificationService to avoid creating new BLE instances
+                    VerificationService.shared.configure(with: chatViewModel.meshService.getNoiseService())
+                    // Prewarm Nostr identity and QR to make first VERIFY sheet fast
+                    DispatchQueue.global(qos: .utility).async {
+                        let npub = try? NostrIdentityBridge.getCurrentNostrIdentity()?.npub
+                        _ = VerificationService.shared.buildMyQRString(nickname: chatViewModel.nickname, npub: npub)
+                    }
                     #if os(iOS)
                     appDelegate.chatViewModel = chatViewModel
                     #elseif os(macOS)
@@ -39,16 +50,28 @@ struct CraysApp: App {
                     handleURL(url)
                 }
                 #if os(iOS)
+                .onChange(of: scenePhase) { newPhase in
+                    switch newPhase {
+                    case .background:
+                        // Keep BLE mesh running in background; BLEService adapts scanning automatically
+                        break
+                    case .active:
+                        // Restart services when becoming active
+                        chatViewModel.meshService.startServices()
+                        checkForSharedContent()
+                    case .inactive:
+                        break
+                    @unknown default:
+                        break
+                    }
+                }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                     // Check for shared content when app becomes active
                     checkForSharedContent()
-                    // Notify MessageRouter to check for Nostr messages
-                    NotificationCenter.default.post(name: .appDidBecomeActive, object: nil)
                 }
                 #elseif os(macOS)
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
-                    // Notify MessageRouter to check for Nostr messages
-                    NotificationCenter.default.post(name: .appDidBecomeActive, object: nil)
+                    // App became active
                 }
                 #endif
         }
@@ -76,30 +99,18 @@ struct CraysApp: App {
             return
         }
         
-        // Only process if shared within last 30 seconds
-        if Date().timeIntervalSince(sharedDate) < 30 {
+        // Only process if shared within configured window
+        if Date().timeIntervalSince(sharedDate) < TransportConfig.uiShareAcceptWindowSeconds {
             let contentType = userDefaults.string(forKey: "sharedContentType") ?? "text"
             
             // Clear the shared content
             userDefaults.removeObject(forKey: "sharedContent")
             userDefaults.removeObject(forKey: "sharedContentType")
             userDefaults.removeObject(forKey: "sharedContentDate")
-            userDefaults.synchronize()
+            // No need to force synchronize here
             
-            // Show notification about shared content
+            // Send the shared content immediately on the main queue
             DispatchQueue.main.async {
-                // Add system message about sharing
-                let systemMessage = CraysMessage(
-                    sender: "system",
-                    content: "preparing to share \(contentType)...",
-                    timestamp: Date(),
-                    isRelay: false
-                )
-                self.chatViewModel.messages.append(systemMessage)
-            }
-            
-            // Send the shared content after a short delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 if contentType == "url" {
                     // Try to parse as JSON first
                     if let data = sharedContent.data(using: .utf8),
@@ -150,6 +161,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     weak var chatViewModel: ChatViewModel?
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        sleep(5)
         let identifier = response.notification.request.identifier
         let userInfo = response.notification.request.content.userInfo
         
@@ -161,6 +173,14 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                     self.chatViewModel?.startPrivateChat(with: peerID)
                 }
             }
+        }
+        // Handle deeplink (e.g., geohash activity)
+        if let deep = userInfo["deeplink"] as? String, let url = URL(string: deep) {
+            #if os(iOS)
+            DispatchQueue.main.async { UIApplication.shared.open(url) }
+            #else
+            DispatchQueue.main.async { NSWorkspace.shared.open(url) }
+            #endif
         }
         
         completionHandler()
@@ -179,6 +199,15 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                     completionHandler([])
                     return
                 }
+            }
+        }
+        // Suppress geohash activity notification if we're already in that geohash channel
+        if identifier.hasPrefix("geo-activity-"),
+           let deep = userInfo["deeplink"] as? String,
+           let gh = deep.components(separatedBy: "/").last {
+            if case .location(let ch) = LocationChannelManager.shared.selectedChannel, ch.geohash == gh {
+                completionHandler([])
+                return
             }
         }
         

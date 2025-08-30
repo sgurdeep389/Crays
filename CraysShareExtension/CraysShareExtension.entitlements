@@ -8,7 +8,5 @@
 	<array>
 		<string>group.chat.Crays</string>
 	</array>
-	<key>com.apple.security.device.bluetooth</key>
-	<true/>
 </dict>
 </plist>
