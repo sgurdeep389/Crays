@@ -1,13 +1,202 @@
 {
-  "originHash" : "d23f76a774eac8b9038cf0c8173d9c0c04100252e4bbcedd0646aebd377c0c86",
+  "originHash" : "e27614a8b766cfc9f93c0fac2406e2f505fad36dec04ed0bbcba9d3e2bd246ea",
   "pins" : [
     {
-      "identity" : "swift-secp256k1",
+      "identity" : "bip39.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/21-DOT-DEV/swift-secp256k1",
+      "location" : "https://github.com/tesseract-one/Bip39.swift.git",
       "state" : {
-        "revision" : "8c62aba8a3011c9bcea232e5ee007fb0b34a15e2",
-        "version" : "0.21.1"
+        "revision" : "bb2b82539d685e1457493b695cdc8e4dcff97c92",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "breez-sdk-spark-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/breez/breez-sdk-spark-swift.git",
+      "state" : {
+        "revision" : "0f1cc148969abd499edc291877d8ac5fba3f2f61",
+        "version" : "0.4.2"
+      }
+    },
+    {
+      "identity" : "cryptoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift",
+      "state" : {
+        "revision" : "e45a26384239e028ec87fbcc788f513b67e10d8f",
+        "version" : "1.9.0"
+      }
+    },
+    {
+      "identity" : "down",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnxnguyen/Down",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e754ab1c80920dd51a8e08290c912ac1c2ac8b58"
+      }
+    },
+    {
+      "identity" : "flanimatedimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flipboard/FLAnimatedImage",
+      "state" : {
+        "revision" : "d4f07b6f164d53c1212c3e54d6460738b1981e9f",
+        "version" : "1.0.17"
+      }
+    },
+    {
+      "identity" : "generic-json-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iwill/generic-json-swift",
+      "state" : {
+        "revision" : "0a06575f4038b504e78ac330913d920f1630f510",
+        "version" : "2.0.2"
+      }
+    },
+    {
+      "identity" : "grdb.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDB.swift.git",
+      "state" : {
+        "branch" : "GRDB7",
+        "revision" : "18497b68fdbb3a09528d260a0a0e1e7e61c8c53d"
+      }
+    },
+    {
+      "identity" : "ink",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnsundell/ink.git",
+      "state" : {
+        "revision" : "bcc9f219900a62c4210e6db726035d7f03ae757b",
+        "version" : "0.6.0"
+      }
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e0c7eebc5a4465a3c4680764f26b7a61f567cdaf"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "2ef543ee21d63734e1c004ad6c870255e8716c50",
+        "version" : "7.12.0"
+      }
+    },
+    {
+      "identity" : "ldk-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lightningdevkit/ldk-swift/",
+      "state" : {
+        "revision" : "b36f37fc216ae83eb8fdc625ae3c85ea4158a7d6",
+        "version" : "0.0.125"
+      }
+    },
+    {
+      "identity" : "lottie-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-spm.git",
+      "state" : {
+        "revision" : "04f2fd18cc9404a0a0917265a449002674f24ec9",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "nantes",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/instacart/Nantes/",
+      "state" : {
+        "revision" : "a82b861bc7863b22c798601e28ff2e8ec86ce4ee",
+        "version" : "0.1.2"
+      }
+    },
+    {
+      "identity" : "nostr-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nostr-sdk/nostr-sdk-ios",
+      "state" : {
+        "revision" : "e453d2793c15ebdb9ae20f27416e398ba6142bb3",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "nwwebsocket",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pusher/NWWebSocket.git",
+      "state" : {
+        "revision" : "da32dcf230d9b627a9ef9d79b83605d12b3fbcbd",
+        "version" : "0.5.7"
+      }
+    },
+    {
+      "identity" : "qrcode",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/qrcode.git",
+      "state" : {
+        "revision" : "6e32d9e56b25ab50af62a902d29d119d407d05e1",
+        "version" : "17.1.0"
+      }
+    },
+    {
+      "identity" : "secp256k1.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GigaBitcoin/secp256k1.swift",
+      "state" : {
+        "revision" : "1a14e189def5eaa92f839afdd2faad8e43b61a6e",
+        "version" : "0.12.2"
+      }
+    },
+    {
+      "identity" : "swift-bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mkrd/Swift-BigInt.git",
+      "state" : {
+        "revision" : "b07e961f4c999671cf8c2dc80e740899e8946013",
+        "version" : "2.3.0"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "7b847a3b7008b2dc2f47ca3110d8c782fb2e5c7e",
+        "version" : "1.3.0"
+      }
+    },
+    {
+      "identity" : "swift-qrcode-generator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/swift-qrcode-generator",
+      "state" : {
+        "revision" : "2b1980b825f08a81ccc762b0c4d17fcde9d5e953",
+        "version" : "2.0.2"
+      }
+    },
+    {
+      "identity" : "swiftimagereadwrite",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/SwiftImageReadWrite",
+      "state" : {
+        "revision" : "96361ba7f9dce5184d95aba8ea90d9faa4acabb2",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "uncommoncrypto.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tesseract-one/UncommonCrypto.swift.git",
+      "state" : {
+        "revision" : "075344faec47dadba98bef6a319e310c98be0820",
+        "version" : "0.2.1"
       }
     }
   ],

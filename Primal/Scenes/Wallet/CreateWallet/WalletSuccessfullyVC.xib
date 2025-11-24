@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nacelle-Bold.otf">
+            <string>Nacelle-Bold</string>
+        </array>
+        <array key="Nacelle-Regular.otf">
+            <string>Nacelle-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletSuccessfullyVC" customModule="Crays" customModuleProvider="target">
+            <connections>
+                <outlet property="btnWallet" destination="0ny-lE-DgT" id="uba-4X-31y"/>
+                <outlet property="lblTile" destination="3E3-RX-XNj" id="Y4g-lM-GQk"/>
+                <outlet property="lblTime" destination="mWG-6J-cyR" id="b0e-9m-cNF"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewBack" destination="pMN-kn-eRg" id="5xI-Z5-vlB"/>
+                <outlet property="viewLottie" destination="qG5-BY-5L3" id="gp1-dz-wkX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMN-kn-eRg">
+                    <rect key="frame" x="25" y="158" width="343" height="528.33333333333337"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qG5-BY-5L3">
+                            <rect key="frame" x="96.666666666666686" y="50" width="150" height="150"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="j4j-cb-dsD"/>
+                                <constraint firstAttribute="height" constant="150" id="zoJ-pQ-pEZ"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3E3-RX-XNj">
+                            <rect key="frame" x="55.333333333333329" y="230" width="232.33333333333337" height="72"/>
+                            <string key="text">Wallet Imported
+Successfully!</string>
+                            <fontDescription key="fontDescription" name="Nacelle-Bold" family="Nacelle" pointSize="30"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Lightning wallet is ready!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBe-sv-tzz">
+                            <rect key="frame" x="57.666666666666671" y="322" width="227.66666666666663" height="20.666666666666686"/>
+                            <fontDescription key="fontDescription" name="Nacelle-Regular" family="Nacelle" pointSize="17"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.33333333333333331" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ny-lE-DgT">
+                            <rect key="frame" x="30" y="382.66666666666663" width="283" height="50"/>
+                            <color key="backgroundColor" red="0.80392156859999997" green="0.19215686269999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="zVr-xM-N4c"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Nacelle-Bold" family="Nacelle" pointSize="17"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Go to Wallet">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redirecting automatically in 2 seconds...." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWG-6J-cyR">
+                            <rect key="frame" x="53.666666666666686" y="452.66666666666663" width="236" height="15.666666666666686"/>
+                            <fontDescription key="fontDescription" name="Nacelle-Regular" family="Nacelle" pointSize="13"/>
+                            <color key="textColor" red="0.63921568627450975" green="0.68235294117647061" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="qBe-sv-tzz" firstAttribute="top" secondItem="3E3-RX-XNj" secondAttribute="bottom" constant="20" id="3Ig-ha-hqk"/>
+                        <constraint firstItem="qG5-BY-5L3" firstAttribute="centerX" secondItem="pMN-kn-eRg" secondAttribute="centerX" id="8bW-yr-FBV"/>
+                        <constraint firstItem="3E3-RX-XNj" firstAttribute="centerX" secondItem="pMN-kn-eRg" secondAttribute="centerX" id="BrP-gC-KQG"/>
+                        <constraint firstItem="mWG-6J-cyR" firstAttribute="centerX" secondItem="pMN-kn-eRg" secondAttribute="centerX" id="Hjj-U1-Tgi"/>
+                        <constraint firstAttribute="trailing" secondItem="0ny-lE-DgT" secondAttribute="trailing" constant="30" id="RTh-ih-DzE"/>
+                        <constraint firstItem="qG5-BY-5L3" firstAttribute="top" secondItem="pMN-kn-eRg" secondAttribute="top" constant="50" id="YPC-jt-Zl3"/>
+                        <constraint firstItem="0ny-lE-DgT" firstAttribute="top" secondItem="qBe-sv-tzz" secondAttribute="bottom" constant="40" id="ahZ-ZJ-xy9"/>
+                        <constraint firstAttribute="bottom" secondItem="mWG-6J-cyR" secondAttribute="bottom" constant="60" id="eXa-nc-ofE"/>
+                        <constraint firstItem="0ny-lE-DgT" firstAttribute="leading" secondItem="pMN-kn-eRg" secondAttribute="leading" constant="30" id="mVR-kB-HIB"/>
+                        <constraint firstItem="qBe-sv-tzz" firstAttribute="centerX" secondItem="pMN-kn-eRg" secondAttribute="centerX" id="pO2-q1-vk5"/>
+                        <constraint firstItem="mWG-6J-cyR" firstAttribute="top" secondItem="0ny-lE-DgT" secondAttribute="bottom" constant="20" id="tlD-Yw-fqO"/>
+                        <constraint firstItem="3E3-RX-XNj" firstAttribute="top" secondItem="qG5-BY-5L3" secondAttribute="bottom" constant="30" id="uEK-VU-5d9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.80392156862745101" green="0.19215686274509802" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pMN-kn-eRg" secondAttribute="trailing" constant="25" id="BiF-sr-fH1"/>
+                <constraint firstItem="pMN-kn-eRg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="Mua-J5-cl3"/>
+                <constraint firstItem="pMN-kn-eRg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="flj-8o-gTz"/>
+            </constraints>
+            <point key="canvasLocation" x="52.671755725190835" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

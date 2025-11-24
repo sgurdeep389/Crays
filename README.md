@@ -1,138 +1,157 @@
-<img width="256" height="256" alt="icon_128x128@2x" src="https://github.com/user-attachments/assets/90133f83-b4f6-41c6-aab9-25d0859d2a47" />
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-## bitchat
 
-A decentralized peer-to-peer messaging app with dual transport architecture: local Bluetooth mesh networks for offline communication and internet-based Nostr protocol for global reach. No accounts, no phone numbers, no central servers. It's the side-groupchat.
 
-[bitchat.free](http://bitchat.free)
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-📲 [App Store](https://apps.apple.com/us/app/bitchat-mesh/id6748219622)
 
-> [!WARNING]
-> Private messages have not received external security review and may contain vulnerabilities. Do not use for sensitive use cases, and do not rely on its security until it has been reviewed. Now uses the [Noise Protocol](http://www.noiseprotocol.org) for identity and encryption. Public local chat (the main feature) has no security concerns.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/PrimalHQ/primal-ios-app">
+    <img src="Primal/Assets.xcassets/LogoSplash.imageset/LogoSplash.png" alt="Logo" width="80" height="80">
+  </a>
 
+<h3 align="center">Primal</h3>
+
+  <p align="center">
+    Featuring easy onboarding, fast & snappy UI, ability to explore Nostr, and create & manage custom feeds
+    <br />
+    <a href="https://github.com/PrimalHQ/primal-ios-app"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/PrimalHQ/primal-ios-app">View Demo</a>
+    ·
+    <a href="https://github.com/PrimalHQ/primal-ios-app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/PrimalHQ/primal-ios-app/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+<div align="center">
+    <img src="https://primal.net/assets/primal_iphone-834937d2.png" alt="iPhone Screenshot">
+</div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+[![Next][Xcode]][Xcode-url]
+
+[![Swift][Swift]][Swift-url]
+
+[![C][C]][C-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+Nothing special, just open the project in Xcode and build it.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Read more about contributions in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
 ## License
 
-This project is released into the public domain. See the [LICENSE](LICENSE) file for details.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
-## Features
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- **Dual Transport Architecture**: Bluetooth mesh for offline + Nostr protocol for internet-based messaging
-- **Location-Based Channels**: Geographic chat rooms using geohash coordinates over global Nostr relays
-- **Intelligent Message Routing**: Automatically chooses best transport (Bluetooth → Nostr fallback)
-- **Decentralized Mesh Network**: Automatic peer discovery and multi-hop message relay over Bluetooth LE
-- **Privacy First**: No accounts, no phone numbers, no persistent identifiers
-- **Private Message End-to-End Encryption**: [Noise Protocol](http://noiseprotocol.org) for mesh, NIP-17 for Nostr
-- **IRC-Style Commands**: Familiar `/slap`, `/msg`, `/who` style interface
-- **Universal App**: Native support for iOS and macOS
-- **Emergency Wipe**: Triple-tap to instantly clear all data
-- **Performance Optimizations**: LZ4 message compression, adaptive battery modes, and optimized networking
+<!-- CONTACT -->
+## Contact
 
-## [Technical Architecture](https://deepwiki.com/permissionlesstech/bitchat)
+- Pavle - [@pavle](https://primal.net/pavle)
+- Nikola - [@nikola](https://primal.net/nikola)
 
-BitChat uses a **hybrid messaging architecture** with two complementary transport layers:
+Project Link: [https://github.com/PrimalHQ/primal-ios-app](https://github.com/PrimalHQ/primal-ios-app)
 
-### Bluetooth Mesh Network (Offline)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- **Local Communication**: Direct peer-to-peer within Bluetooth range
-- **Multi-hop Relay**: Messages route through nearby devices (max 7 hops)
-- **No Internet Required**: Works completely offline in disaster scenarios
-- **Noise Protocol Encryption**: End-to-end encryption with forward secrecy
-- **Binary Protocol**: Compact packet format optimized for Bluetooth LE constraints
-- **Automatic Discovery**: Peer discovery and connection management
-- **Adaptive Power**: Battery-optimized duty cycling
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-### Nostr Protocol (Internet)
+* [Damus](https://github.com/damus-io/damus)
 
-- **Global Reach**: Connect with users worldwide via internet relays
-- **Location Channels**: Geographic chat rooms using geohash coordinates
-- **290+ Relay Network**: Distributed across the globe for reliability
-- **NIP-17 Encryption**: Gift-wrapped private messages for internet privacy
-- **Ephemeral Keys**: Fresh cryptographic identity per geohash area
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Channel Types
-
-#### `mesh #bluetooth`
-
-- **Transport**: Bluetooth Low Energy mesh network
-- **Scope**: Local devices within multi-hop range
-- **Internet**: Not required
-- **Use Case**: Offline communication, protests, disasters, remote areas
-
-#### Location Channels (`block #dr5rsj7`, `neighborhood #dr5rs`, `country #dr`)
-
-- **Transport**: Nostr protocol over internet
-- **Scope**: Geographic areas defined by geohash precision
-  - `block` (7 chars): City block level
-  - `neighborhood` (6 chars): District/neighborhood
-  - `city` (5 chars): City level
-  - `province` (4 chars): State/province
-  - `region` (2 chars): Country/large region
-- **Internet**: Required (connects to Nostr relays)
-- **Use Case**: Location-based community chat, local events, regional discussions
-
-### Direct Message Routing
-
-Private messages use **intelligent transport selection**:
-
-1. **Bluetooth First** (preferred when available)
-
-   - Direct connection with established Noise session
-   - Fastest and most private option
-
-2. **Nostr Fallback** (when Bluetooth unavailable)
-
-   - Uses recipient's Nostr public key
-   - NIP-17 gift-wrapping for privacy
-   - Routes through global relay network
-
-3. **Smart Queuing** (when neither available)
-   - Messages queued until transport becomes available
-   - Automatic delivery when connection established
-
-For detailed protocol documentation, see the [Technical Whitepaper](WHITEPAPER.md).
-
-## Setup
-
-### Option 1: Using XcodeGen (Recommended)
-
-1. Install XcodeGen if you haven't already:
-
-   ```bash
-   brew install xcodegen
-   ```
-
-2. Generate the Xcode project:
-
-   ```bash
-   cd bitchat
-   xcodegen generate
-   ```
-
-3. Open the generated project:
-   ```bash
-   open bitchat.xcodeproj
-   ```
-
-### Option 2: Using Swift Package Manager
-
-1. Open the project in Xcode:
-
-   ```bash
-   cd bitchat
-   open Package.swift
-   ```
-
-2. Select your target device and run
-
-### Option 3: Manual Xcode Project
-
-1. Open Xcode and create a new iOS/macOS App
-2. Copy all Swift files from the `bitchat` directory into your project
-3. Update Info.plist with Bluetooth permissions
-4. Set deployment target to iOS 16.0 / macOS 13.0
-
-### Option 4: just
-
-Want to try this on macos: `just run` will set it up and run from source.
-Run `just clean` afterwards to restore things to original state for mobile app building and development.
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/PrimalHQ/primal-ios-app.svg?style=for-the-badge
+[contributors-url]: https://github.com/PrimalHQ/primal-ios-app/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/PrimalHQ/primal-ios-app.svg?style=for-the-badge
+[forks-url]: https://github.com/PrimalHQ/primal-ios-app/network/members
+[stars-shield]: https://img.shields.io/github/stars/PrimalHQ/primal-ios-app.svg?style=for-the-badge
+[stars-url]: https://github.com/PrimalHQ/primal-ios-app/stargazers
+[issues-shield]: https://img.shields.io/github/issues/PrimalHQ/primal-ios-app.svg?style=for-the-badge
+[issues-url]: https://github.com/PrimalHQ/primal-ios-app/issues
+[license-shield]: https://img.shields.io/github/license/PrimalHQ/primal-ios-app.svg?style=for-the-badge
+[license-url]: https://github.com/PrimalHQ/primal-ios-app/blob/master/LICENSE.txt
+[product-screenshot]: https://primal.net/assets/primal_iphone-834937d2.png
+[Xcode]: https://img.shields.io/badge/xcode-000000?style=for-the-badge&logo=xcode&logoColor=white
+[Xcode-url]: https://developer.apple.com/xcode
+[Swift]: https://img.shields.io/badge/swift-000000?style=for-the-badge&logo=swift&logoColor=white
+[Swift-url]: https://www.swift.org
+[C]: https://img.shields.io/badge/c-000000?style=for-the-badge&logo=c&logoColor=white
+[C-url]: https://www.learn-c.org/

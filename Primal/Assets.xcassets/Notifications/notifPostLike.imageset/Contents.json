@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "liked a note your note was mentioned in - light.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "liked a note your note was mentioned in - dark.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
