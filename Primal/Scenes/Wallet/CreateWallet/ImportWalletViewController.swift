@@ -8,7 +8,7 @@
 import UIKit
 
 import UIKit
-//import BreezSdkSpark
+import BreezSdkSpark
 import Bip39
 
 class ImportWalletViewController: UIViewController {
@@ -51,38 +51,38 @@ class ImportWalletViewController: UIViewController {
     }
     
     func createWallet() {
-//        Task {
-//            do {
-//                let seed = Seed.mnemonic(mnemonic: self.txtViewPhase.text, passphrase: nil)
-//
-//                var config = defaultConfig(network: Network.mainnet)
-//                config.apiKey = "MIIBdDCCASagAwIBAgIHPpfhotBcKzAFBgMrZXAwEDEOMAwGA1UEAxMFQnJlZXowHhcNMjUxMDMwMTcxMzExWhcNMzUxMDI4MTcxMzExWjAmMRIwEAYDVQQKEwlDb2RlIElkZWExEDAOBgNVBAMTB0d1cm5vb3IwKjAFBgMrZXADIQDQg/XL3yA8HKIgyimHU/Qbpxy0tvzris1fDUtEs6ldd6OBiDCBhTAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQU2jmj7l5rSw0yVb/vlWAYkK/YBwkwHwYDVR0jBBgwFoAU3qrWklbzjed0khb8TLYgsmsomGswJQYDVR0RBB4wHIEac2luZ2hqYXNrYXJhbi5jaUBnbWFpbC5jb20wBQYDK2VwA0EA4PSjNi+1g8D+AIJQGGXS5va926BkffEJDi6ubz1A7/BiwzPRxLNZ/3n3FVvxaxHGLDKOJpGqwNtX+dUpNihIBg=="
-//
-//                // Get writable storage dir
-//                let storageDir = FileManager.default.urls(
-//                    for: .applicationSupportDirectory,
-//                    in: .userDomainMask
-//                ).first!.appendingPathComponent("breez_data").path
-//
-//                // Create directory if needed
-//                if !FileManager.default.fileExists(atPath: storageDir) {
-//                    try FileManager.default.createDirectory(atPath: storageDir, withIntermediateDirectories: true)
-//                }
-//
-//                let builder = SdkBuilder(config: config, seed: seed)
-//
-//                // Use correct writable path
-//                await builder.withDefaultStorage(storageDir: storageDir)
-//
-//                let sdk = try await builder.build()
-//                WalletManager1.shared.saveMnemonic(self.txtViewPhase.text)
-//                self.navigationController?.pushViewController(WalletSuccessfullyVC(), animated: true)
-//                print("Wallet created successfully")
-//
-//            } catch {
-//                print("❌ Failed to create wallet:", error.localizedDescription)
-//            }
-//        }
+        Task {
+            do {
+                let seed = Seed.mnemonic(mnemonic: self.txtViewPhase.text, passphrase: nil)
+
+                var config = defaultConfig(network: Network.mainnet)
+                config.apiKey = "MIIBdDCCASagAwIBAgIHPpfhotBcKzAFBgMrZXAwEDEOMAwGA1UEAxMFQnJlZXowHhcNMjUxMDMwMTcxMzExWhcNMzUxMDI4MTcxMzExWjAmMRIwEAYDVQQKEwlDb2RlIElkZWExEDAOBgNVBAMTB0d1cm5vb3IwKjAFBgMrZXADIQDQg/XL3yA8HKIgyimHU/Qbpxy0tvzris1fDUtEs6ldd6OBiDCBhTAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQU2jmj7l5rSw0yVb/vlWAYkK/YBwkwHwYDVR0jBBgwFoAU3qrWklbzjed0khb8TLYgsmsomGswJQYDVR0RBB4wHIEac2luZ2hqYXNrYXJhbi5jaUBnbWFpbC5jb20wBQYDK2VwA0EA4PSjNi+1g8D+AIJQGGXS5va926BkffEJDi6ubz1A7/BiwzPRxLNZ/3n3FVvxaxHGLDKOJpGqwNtX+dUpNihIBg=="
+
+                // Get writable storage dir
+                let storageDir = FileManager.default.urls(
+                    for: .applicationSupportDirectory,
+                    in: .userDomainMask
+                ).first!.appendingPathComponent("breez_data").path
+
+                // Create directory if needed
+                if !FileManager.default.fileExists(atPath: storageDir) {
+                    try FileManager.default.createDirectory(atPath: storageDir, withIntermediateDirectories: true)
+                }
+
+                let builder = SdkBuilder(config: config, seed: seed)
+
+                // Use correct writable path
+                await builder.withDefaultStorage(storageDir: storageDir)
+
+                let sdk = try await builder.build()
+                WalletManager1.shared.saveMnemonic(self.txtViewPhase.text)
+                self.navigationController?.pushViewController(WalletSuccessfullyVC(), animated: true)
+                print("Wallet created successfully")
+
+            } catch {
+                print("❌ Failed to create wallet:", error.localizedDescription)
+            }
+        }
     }
     
 }

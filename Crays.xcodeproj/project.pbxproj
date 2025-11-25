@@ -653,6 +653,8 @@
 		CA4DD0972E7B236E006C4C23 /* Frame 1948755992.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4DD0962E7B236E006C4C23 /* Frame 1948755992.png */; };
 		CA5970862E8454CE00B0BA8D /* devVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA5970852E8454CE00B0BA8D /* devVideo.mp4 */; };
 		CA6266822ED37C27006FCC19 /* BreezSdkSpark in Frameworks */ = {isa = PBXBuildFile; productRef = CA6266812ED37C27006FCC19 /* BreezSdkSpark */; };
+		CA68B9BA2ED4CEC600C5BE59 /* GRDB-dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */; };
+		CA68B9BB2ED4CEC600C5BE59 /* GRDB-dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CA6EA51E2ED200E3004908FF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA51D2ED200E3004908FF /* WalletViewController.swift */; };
 		CA6EA5202ED2011C004908FF /* ActionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA51F2ED2011C004908FF /* ActionCardView.swift */; };
 		CA6EA5222ED2015B004908FF /* CreateWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA5212ED2015B004908FF /* CreateWalletViewController.swift */; };
@@ -715,7 +717,6 @@
 		CAB6C9562ED2225E000B2951 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9552ED2225E000B2951 /* Down */; };
 		CAB6C9582ED22266000B2951 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9572ED22266000B2951 /* FLAnimatedImage */; };
 		CAB6C95A2ED2226E000B2951 /* GenericJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9592ED2226E000B2951 /* GenericJSON */; };
-		CAB6C95C2ED22275000B2951 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C95B2ED22275000B2951 /* GRDB */; };
 		CAB6C95E2ED22293000B2951 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C95D2ED22293000B2951 /* KeychainAccess */; };
 		CAB6C9602ED2229C000B2951 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C95F2ED2229C000B2951 /* Kingfisher */; };
 		CAB6C9622ED222A9000B2951 /* LightningDevKit in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9612ED222A9000B2951 /* LightningDevKit */; };
@@ -765,6 +766,7 @@
 			dstSubfolder = Frameworks;
 			files = (
 				B9CC1ADF2DF38ECB0020BFC2 /* PrimalShared.xcframework in Embed Frameworks */,
+				CA68B9BB2ED4CEC600C5BE59 /* GRDB-dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};
@@ -1581,13 +1583,13 @@
 				CAB6C9562ED2225E000B2951 /* Down in Frameworks */,
 				CAB6C9602ED2229C000B2951 /* Kingfisher in Frameworks */,
 				CAB6C9642ED222B5000B2951 /* Lottie in Frameworks */,
-				CAB6C95C2ED22275000B2951 /* GRDB in Frameworks */,
 				CAB6C9682ED222C0000B2951 /* NostrSDK in Frameworks */,
 				CAB6C9582ED22266000B2951 /* FLAnimatedImage in Frameworks */,
 				CA16874B2ED23C62006726E9 /* Bip39 in Frameworks */,
 				CAB6C96E2ED222DE000B2951 /* Ink in Frameworks */,
 				CAB6C9622ED222A9000B2951 /* LightningDevKit in Frameworks */,
 				CAB6C95A2ED2226E000B2951 /* GenericJSON in Frameworks */,
+				CA68B9BA2ED4CEC600C5BE59 /* GRDB-dynamic in Frameworks */,
 			);
 		};
 		939330FF29A3E370003954C2 /* Frameworks */ = {
@@ -3625,7 +3627,6 @@
 				CAB6C9552ED2225E000B2951 /* Down */,
 				CAB6C9572ED22266000B2951 /* FLAnimatedImage */,
 				CAB6C9592ED2226E000B2951 /* GenericJSON */,
-				CAB6C95B2ED22275000B2951 /* GRDB */,
 				CAB6C95D2ED22293000B2951 /* KeychainAccess */,
 				CAB6C95F2ED2229C000B2951 /* Kingfisher */,
 				CAB6C9612ED222A9000B2951 /* LightningDevKit */,
@@ -3637,6 +3638,7 @@
 				CAB6C96D2ED222DE000B2951 /* Ink */,
 				CA16874A2ED23C62006726E9 /* Bip39 */,
 				CA6266812ED37C27006FCC19 /* BreezSdkSpark */,
+				CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */,
 			);
 			productName = Primal;
 			productReference = 939330F229A3E36F003954C2 /* Crays.app */;
@@ -3757,7 +3759,6 @@
 				CAB6C9352ED21FCF000B2951 /* XCRemoteSwiftPackageReference "Down" */,
 				CAB6C9362ED21FFD000B2951 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 				CAB6C9372ED2204D000B2951 /* XCRemoteSwiftPackageReference "generic-json-swift" */,
-				CAB6C9382ED22075000B2951 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				CAB6C9392ED2208D000B2951 /* XCRemoteSwiftPackageReference "ink" */,
 				CAB6C93A2ED220A7000B2951 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				CAB6C93B2ED220CB000B2951 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -3769,6 +3770,7 @@
 				CAB6C9412ED2221D000B2951 /* XCRemoteSwiftPackageReference "nostr-sdk-ios" */,
 				CA1687492ED23C3E006726E9 /* XCRemoteSwiftPackageReference "Bip39.swift" */,
 				CA6266802ED37C18006FCC19 /* XCRemoteSwiftPackageReference "breez-sdk-spark-swift" */,
+				CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 939330F329A3E36F003954C2 /* Products */;
@@ -4722,7 +4724,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MARKETING_VERSION = 1.2;
+				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crays.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4777,7 +4781,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MARKETING_VERSION = 1.2;
+				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crays.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5061,6 +5067,14 @@
 				minimumVersion = 0.4.2;
 			};
 		};
+		CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				branch = GRDB7;
+				kind = branch;
+			};
+		};
 		CAB6C9342ED21FAF000B2951 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
@@ -5091,14 +5105,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
-			};
-		};
-		CAB6C9382ED22075000B2951 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/groue/GRDB.swift.git";
-			requirement = {
-				branch = GRDB7;
-				kind = branch;
 			};
 		};
 		CAB6C9392ED2208D000B2951 /* XCRemoteSwiftPackageReference "ink" */ = {
@@ -5186,6 +5192,11 @@
 			package = CA6266802ED37C18006FCC19 /* XCRemoteSwiftPackageReference "breez-sdk-spark-swift" */;
 			productName = BreezSdkSpark;
 		};
+		CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = "GRDB-dynamic";
+		};
 		CAB6C9532ED22256000B2951 /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CAB6C9342ED21FAF000B2951 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
@@ -5205,11 +5216,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CAB6C9372ED2204D000B2951 /* XCRemoteSwiftPackageReference "generic-json-swift" */;
 			productName = GenericJSON;
-		};
-		CAB6C95B2ED22275000B2951 /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAB6C9382ED22075000B2951 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
-			productName = GRDB;
 		};
 		CAB6C95D2ED22293000B2951 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
