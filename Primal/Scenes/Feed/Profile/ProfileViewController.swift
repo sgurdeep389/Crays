@@ -26,6 +26,8 @@ final class ProfileViewController: PostFeedViewController, ArticleCellController
         case replies = 1
         case reads = 2
         case media = 3
+        case subscribers = 4
+        case paid = 5
     }
     
     var profile: ParsedUser {
@@ -75,9 +77,14 @@ final class ProfileViewController: PostFeedViewController, ArticleCellController
     
     var isEmpty: Bool {
         switch profileTab {
-        case .notes, .replies:  return posts.isEmpty
-        case .reads:            return articles.isEmpty
-        case .media:            return media.isEmpty
+        case .notes, .replies:
+            return posts.isEmpty
+        case .reads:
+            return articles.isEmpty
+        case .media:
+            return media.isEmpty
+        case .subscribers, .paid:
+            return false
         }
     }
     
@@ -102,6 +109,12 @@ final class ProfileViewController: PostFeedViewController, ArticleCellController
                     requestMedia()
                 }
                 profileDataSource?.setMedia(media)
+            case .subscribers:
+                profileDataSource?.isLoading = false
+                profileDataSource?.cells = [.empty("No subscribers yet")]
+            case .paid:
+                profileDataSource?.isLoading = false
+                profileDataSource?.cells = [.empty("No paid messages yet")]
             }
             
             profileDataSource?.isLoading = isLoading
@@ -112,9 +125,14 @@ final class ProfileViewController: PostFeedViewController, ArticleCellController
         guard isEmpty else { return false }
         
         switch profileTab {
-        case .notes, .replies:  return !feed.didReachEnd
-        case .reads:            return isLoadingArticles
-        case .media:            return true
+        case .notes, .replies:
+            return !feed.didReachEnd
+        case .reads:
+            return isLoadingArticles
+        case .media:
+            return true
+        case .subscribers, .paid:
+            return false
         }
     }
     
@@ -182,6 +200,8 @@ final class ProfileViewController: PostFeedViewController, ArticleCellController
             guard let article = articles[safe: indexPath.row] else { return }
             show(ArticleViewController(content: article), sender: nil)
         case .media:
+            return
+        case .subscribers, .paid:
             return
         }
     }
@@ -300,6 +320,8 @@ private extension ProfileViewController {
         profileOverlay2.constrainToSize(0.6 * 80)
         navigationBar.profilePicOverlayBig = profileOverlay1
         navigationBar.profilePicOverlaySmall = profileOverlay2
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(subscriptionSettingsUpdated), name: .subscriptionSettingsUpdated, object: nil)
     }
     
     @objc func profilePicTapped() {
@@ -357,6 +379,11 @@ extension ProfileViewController: ProfileNavigationViewDelegate {
             advancedSearchManager.searchType = .reads
         case .media:
             advancedSearchManager.searchType = .images
+        case .subscribers:
+            advancedSearchManager.searchType = .images
+        case .paid:
+            advancedSearchManager.searchType = .images
+            
         }
         return advancedSearchManager
     }
@@ -379,6 +406,11 @@ extension ProfileViewController: ProfileNavigationViewDelegate {
             feed.name = name
             feed.description = "Articles by \(profile.data.firstIdentifier)"
             return feed
+        case .subscribers, .paid:
+            var feed = advancedSearchManager.feed
+            feed.name = name
+            feed.description = "Activity by \(profile.data.firstIdentifier)"
+            return feed
         }
     }
     func tappedAddUserFeed() {
@@ -400,6 +432,17 @@ extension ProfileViewController: ProfileNavigationViewDelegate {
         
         view.showToast("Followed")
     }
+    
+    @objc private func subscriptionSettingsUpdated() {
+        DispatchQueue.main.async {
+            guard self.table.numberOfSections > 0, self.table.numberOfRows(inSection: 0) > 0 else { return }
+            self.table.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+        }
+    }
+    
+//    deinit {
+//        NotificationCenter.default.removeObserver(self, name: .subscriptionSettingsUpdated, object: nil)
+//    }
 }
 
 extension ProfileViewController: MutedUserCellDelegate {
@@ -440,6 +483,18 @@ extension ProfileViewController: ProfileInfoCellDelegate {
     
     func qrPressed() {
         show(ProfileQRController(user: profile), sender: nil)
+    }
+    func linkButtonPressed() {
+        show(SocialLinkViewController(profile: profile.data), sender: nil)
+    }
+    
+    func socialLinkPressed(_ url: URL) {
+        handleURLTap(url, cachedUsers: cachedUsers)
+    }
+    
+    func manageSubscriptionPressed() {
+        guard profile.data.isCurrentUser else { return }
+        show(SubscriptionPricingViewController(), sender: nil)
     }
     
     func messagePressed() {
