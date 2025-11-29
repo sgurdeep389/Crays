@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nacelle-Regular.otf">
+            <string>Nacelle-Regular</string>
+        </array>
+        <array key="Nacelle-SemiBold.otf">
+            <string>Nacelle-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="TransactionsTableViewCell" customModule="Crays" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="489" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="489" height="167"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDN-3s-Ihv">
+                        <rect key="frame" x="0.0" y="5" width="489" height="157"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2z9-r5-T6p">
+                                <rect key="frame" x="20" y="25" width="449" height="107"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-send-letter-100" translatesAutoresizingMaskIntoConstraints="NO" id="46l-6N-DHt">
+                                        <rect key="frame" x="0.0" y="36" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="WmB-CL-lW6"/>
+                                            <constraint firstAttribute="width" constant="35" id="tkl-kb-r5X"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Cz-Mp-4fQ">
+                                        <rect key="frame" x="50" y="30.666666666666668" width="46.666666666666657" height="45.666666666666657"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJI-xd-pdf">
+                                                <rect key="frame" x="0.0" y="0.0" width="46.666666666666664" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="Nacelle-SemiBold" family="Nacelle" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQc-It-KbV">
+                                                <rect key="frame" x="0.0" y="27.666666666666664" width="46.666666666666664" height="18"/>
+                                                <fontDescription key="fontDescription" name="Nacelle-Regular" family="Nacelle" pointSize="15"/>
+                                                <color key="textColor" red="0.45490196078431372" green="0.50196078431372548" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kA-0P-IaF">
+                                        <rect key="frame" x="111.66666666666666" y="43.333333333333329" width="337.33333333333337" height="20.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Nacelle-SemiBold" family="Nacelle" pointSize="17"/>
+                                        <color key="textColor" red="0.41176470588235292" green="0.72549019607843135" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2z9-r5-T6p" firstAttribute="leading" secondItem="sDN-3s-Ihv" secondAttribute="leading" constant="20" id="V1D-D6-f6j"/>
+                            <constraint firstAttribute="trailing" secondItem="2z9-r5-T6p" secondAttribute="trailing" constant="20" id="gmY-8n-dSb"/>
+                            <constraint firstAttribute="bottom" secondItem="2z9-r5-T6p" secondAttribute="bottom" constant="25" id="uXC-FJ-371"/>
+                            <constraint firstItem="2z9-r5-T6p" firstAttribute="top" secondItem="sDN-3s-Ihv" secondAttribute="top" constant="25" id="xla-6s-JJI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="sDN-3s-Ihv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="C7X-zm-ys7"/>
+                    <constraint firstAttribute="trailing" secondItem="sDN-3s-Ihv" secondAttribute="trailing" id="S8T-6L-hh8"/>
+                    <constraint firstItem="sDN-3s-Ihv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xKX-Ol-nic"/>
+                    <constraint firstAttribute="bottom" secondItem="sDN-3s-Ihv" secondAttribute="bottom" constant="5" id="xiQ-vK-bZt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgPayment" destination="46l-6N-DHt" id="qkJ-VL-tEe"/>
+                <outlet property="lblAmount" destination="9kA-0P-IaF" id="hOl-4Z-wSf"/>
+                <outlet property="lblPaymentTime" destination="WQc-It-KbV" id="47U-Yt-OPz"/>
+                <outlet property="lblPaymentType" destination="eJI-xd-pdf" id="HwB-lR-SaH"/>
+                <outlet property="viewPayment" destination="sDN-3s-Ihv" id="LjG-HO-rng"/>
+            </connections>
+            <point key="canvasLocation" x="180.91603053435114" y="63.028169014084511"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icons8-send-letter-100" width="100" height="100"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

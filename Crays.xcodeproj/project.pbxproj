@@ -650,11 +650,23 @@
 		CA1687A32ED360AC006726E9 /* WalletSuccessfullyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1687A12ED360AC006726E9 /* WalletSuccessfullyVC.swift */; };
 		CA1687A42ED360AC006726E9 /* WalletSuccessfullyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1687A22ED360AC006726E9 /* WalletSuccessfullyVC.xib */; };
 		CA1687B92ED3661F006726E9 /* walletSuccessfully.json in Resources */ = {isa = PBXBuildFile; fileRef = CA1687B82ED3661F006726E9 /* walletSuccessfully.json */; };
+		CA1F20182EDB4DB1003070E8 /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F20172EDB4DB0003070E8 /* QRScannerView.swift */; };
+		CA42C7192EDB41D3003E173D /* EnterSatsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42C7182EDB41D3003E173D /* EnterSatsVC.xib */; };
+		CA42C71A2EDB41D3003E173D /* EnterSatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA42C7172EDB41D3003E173D /* EnterSatsVC.swift */; };
 		CA4DD0972E7B236E006C4C23 /* Frame 1948755992.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4DD0962E7B236E006C4C23 /* Frame 1948755992.png */; };
 		CA5970862E8454CE00B0BA8D /* devVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA5970852E8454CE00B0BA8D /* devVideo.mp4 */; };
 		CA6266822ED37C27006FCC19 /* BreezSdkSpark in Frameworks */ = {isa = PBXBuildFile; productRef = CA6266812ED37C27006FCC19 /* BreezSdkSpark */; };
+		CA64EB2C2EDB07ED003E46C5 /* BreezViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA64EB2B2EDB07EC003E46C5 /* BreezViewModel.swift */; };
+		CA64EB312EDB33C5003E46C5 /* TransactionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA64EB302EDB33C5003E46C5 /* TransactionsTableViewCell.xib */; };
+		CA64EB322EDB33C5003E46C5 /* TransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA64EB2F2EDB33C5003E46C5 /* TransactionsTableViewCell.swift */; };
 		CA68B9BA2ED4CEC600C5BE59 /* GRDB-dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */; };
 		CA68B9BB2ED4CEC600C5BE59 /* GRDB-dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		CA68B9D02ED75B0200C5BE59 /* WalletDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68B9CE2ED75B0200C5BE59 /* WalletDashboardVC.swift */; };
+		CA68B9D12ED75B0200C5BE59 /* WalletDashboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68B9CF2ED75B0200C5BE59 /* WalletDashboardVC.xib */; };
+		CA68B9E52ED766FE00C5BE59 /* ReceivePaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68B9E42ED766FE00C5BE59 /* ReceivePaymentVC.xib */; };
+		CA68B9E62ED766FE00C5BE59 /* ReceivePaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68B9E32ED766FE00C5BE59 /* ReceivePaymentVC.swift */; };
+		CA68B9FC2ED77EAD00C5BE59 /* SendPaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68B9FB2ED77EAD00C5BE59 /* SendPaymentVC.xib */; };
+		CA68B9FD2ED77EAD00C5BE59 /* SendPaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68B9FA2ED77EAD00C5BE59 /* SendPaymentVC.swift */; };
 		CA6EA51E2ED200E3004908FF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA51D2ED200E3004908FF /* WalletViewController.swift */; };
 		CA6EA5202ED2011C004908FF /* ActionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA51F2ED2011C004908FF /* ActionCardView.swift */; };
 		CA6EA5222ED2015B004908FF /* CreateWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA5212ED2015B004908FF /* CreateWalletViewController.swift */; };
@@ -1466,8 +1478,20 @@
 		CA1687A12ED360AC006726E9 /* WalletSuccessfullyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSuccessfullyVC.swift; sourceTree = "<group>"; };
 		CA1687A22ED360AC006726E9 /* WalletSuccessfullyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletSuccessfullyVC.xib; sourceTree = "<group>"; };
 		CA1687B82ED3661F006726E9 /* walletSuccessfully.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = walletSuccessfully.json; sourceTree = "<group>"; };
+		CA1F20172EDB4DB0003070E8 /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
+		CA42C7172EDB41D3003E173D /* EnterSatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterSatsVC.swift; sourceTree = "<group>"; };
+		CA42C7182EDB41D3003E173D /* EnterSatsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterSatsVC.xib; sourceTree = "<group>"; };
 		CA4DD0962E7B236E006C4C23 /* Frame 1948755992.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 1948755992.png"; sourceTree = "<group>"; };
 		CA5970852E8454CE00B0BA8D /* devVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = devVideo.mp4; sourceTree = "<group>"; };
+		CA64EB2B2EDB07EC003E46C5 /* BreezViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreezViewModel.swift; sourceTree = "<group>"; };
+		CA64EB2F2EDB33C5003E46C5 /* TransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewCell.swift; sourceTree = "<group>"; };
+		CA64EB302EDB33C5003E46C5 /* TransactionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsTableViewCell.xib; sourceTree = "<group>"; };
+		CA68B9CE2ED75B0200C5BE59 /* WalletDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDashboardVC.swift; sourceTree = "<group>"; };
+		CA68B9CF2ED75B0200C5BE59 /* WalletDashboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletDashboardVC.xib; sourceTree = "<group>"; };
+		CA68B9E32ED766FE00C5BE59 /* ReceivePaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivePaymentVC.swift; sourceTree = "<group>"; };
+		CA68B9E42ED766FE00C5BE59 /* ReceivePaymentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceivePaymentVC.xib; sourceTree = "<group>"; };
+		CA68B9FA2ED77EAD00C5BE59 /* SendPaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentVC.swift; sourceTree = "<group>"; };
+		CA68B9FB2ED77EAD00C5BE59 /* SendPaymentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendPaymentVC.xib; sourceTree = "<group>"; };
 		CA6EA51D2ED200E3004908FF /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		CA6EA51F2ED2011C004908FF /* ActionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCardView.swift; sourceTree = "<group>"; };
 		CA6EA5212ED2015B004908FF /* CreateWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletViewController.swift; sourceTree = "<group>"; };
@@ -2839,6 +2863,7 @@
 		B94F2BB72AD410FA0041181B /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				CA68B9CD2ED75AE500C5BE59 /* WalletDashboard */,
 				CA6EA51C2ED200D2004908FF /* CreateWallet */,
 				B9B1AB972B2C72F200837312 /* jsonData */,
 				B9CE4DD72B8505A20060A1B8 /* Activation */,
@@ -3467,6 +3492,57 @@
 			path = Nearbychat;
 			sourceTree = "<group>";
 		};
+		CA42C7162EDB41B7003E173D /* EnterSats */ = {
+			isa = PBXGroup;
+			children = (
+				CA42C7172EDB41D3003E173D /* EnterSatsVC.swift */,
+				CA42C7182EDB41D3003E173D /* EnterSatsVC.xib */,
+			);
+			path = EnterSats;
+			sourceTree = "<group>";
+		};
+		CA64EB2A2EDB07DB003E46C5 /* BreezViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA64EB2B2EDB07EC003E46C5 /* BreezViewModel.swift */,
+			);
+			path = BreezViewModel;
+			sourceTree = "<group>";
+		};
+		CA68B9CD2ED75AE500C5BE59 /* WalletDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				CA42C7162EDB41B7003E173D /* EnterSats */,
+				CA64EB2A2EDB07DB003E46C5 /* BreezViewModel */,
+				CA68B9F92ED77E9D00C5BE59 /* SendPayment */,
+				CA68B9E72ED7670500C5BE59 /* ReceivePayment */,
+				CA68B9CE2ED75B0200C5BE59 /* WalletDashboardVC.swift */,
+				CA68B9CF2ED75B0200C5BE59 /* WalletDashboardVC.xib */,
+				CA64EB2F2EDB33C5003E46C5 /* TransactionsTableViewCell.swift */,
+				CA64EB302EDB33C5003E46C5 /* TransactionsTableViewCell.xib */,
+			);
+			path = WalletDashboard;
+			sourceTree = "<group>";
+		};
+		CA68B9E72ED7670500C5BE59 /* ReceivePayment */ = {
+			isa = PBXGroup;
+			children = (
+				CA68B9E32ED766FE00C5BE59 /* ReceivePaymentVC.swift */,
+				CA68B9E42ED766FE00C5BE59 /* ReceivePaymentVC.xib */,
+			);
+			path = ReceivePayment;
+			sourceTree = "<group>";
+		};
+		CA68B9F92ED77E9D00C5BE59 /* SendPayment */ = {
+			isa = PBXGroup;
+			children = (
+				CA1F20172EDB4DB0003070E8 /* QRScannerView.swift */,
+				CA68B9FA2ED77EAD00C5BE59 /* SendPaymentVC.swift */,
+				CA68B9FB2ED77EAD00C5BE59 /* SendPaymentVC.xib */,
+			);
+			path = SendPayment;
+			sourceTree = "<group>";
+		};
 		CA6EA51C2ED200D2004908FF /* CreateWallet */ = {
 			isa = PBXGroup;
 			children = (
@@ -3797,8 +3873,11 @@
 				9EF4BFCE2A93CE1B003396AA /* loadingSpinnerBlue.json in Resources */,
 				B91C46282BC6D03B00AC2C9B /* PrivacyInfo.xcprivacy in Resources */,
 				9E40D6EE2A0D22D4008AE854 /* loadingSpinner.json in Resources */,
+				CA68B9FC2ED77EAD00C5BE59 /* SendPaymentVC.xib in Resources */,
 				9EB219EC2A06D2AF0037C3E5 /* splashAlpha.json in Resources */,
+				CA42C7192EDB41D3003E173D /* EnterSatsVC.xib in Resources */,
 				B9CE4DBE2B715DB80060A1B8 /* notificationLightning.json in Resources */,
+				CA64EB312EDB33C5003E46C5 /* TransactionsTableViewCell.xib in Resources */,
 				CA1687B92ED3661F006726E9 /* walletSuccessfully.json in Resources */,
 				B94F2BFE2AE95D790041181B /* Nacelle-UltraLight.otf in Resources */,
 				B94F2BFF2AE95D790041181B /* Nacelle-Black.otf in Resources */,
@@ -3821,10 +3900,12 @@
 				939330FA29A3E370003954C2 /* Assets.xcassets in Resources */,
 				B94F2BFA2AE95D790041181B /* Nacelle-Regular.otf in Resources */,
 				B94429202BD2836800746FBC /* zap-medium.json in Resources */,
+				CA68B9D12ED75B0200C5BE59 /* WalletDashboardVC.xib in Resources */,
 				B906AAE52C91C46D0089813F /* smallPillLoaderLight.json in Resources */,
 				B94429222BD2866D00746FBC /* thread-zap-medium.json in Resources */,
 				B90DB0692E5C71A200A67D4A /* videoLoadingScreenLight.json in Resources */,
 				9E0DEAF429FD35A000145E08 /* iconZap.json in Resources */,
+				CA68B9E52ED766FE00C5BE59 /* ReceivePaymentVC.xib in Resources */,
 				9393313C29A3E5D3003954C2 /* RobotoFlex.ttf in Resources */,
 				B9A335382E5778DE000B2CA7 /* liveBufferSpinner.json in Resources */,
 				B9A3353C2E58950D000B2CA7 /* videoLoadingScreen.json in Resources */,
@@ -3974,11 +4055,13 @@
 				B934ADAB2DAFDD1F0044E5B5 /* SettingsMutedViewController.swift in Sources */,
 				B9DAA4632D53E48400B00B82 /* ThreadElementTidalPreviewCell.swift in Sources */,
 				9E88349C2A211577005DB548 /* RootAnimatorToSignIn.swift in Sources */,
+				CA68B9FD2ED77EAD00C5BE59 /* SendPaymentVC.swift in Sources */,
 				B9E67E8F2D0767F3006BB397 /* FeedElementZapPreviewCell.swift in Sources */,
 				B91EF0CD2CEA1B0900299ECF /* PremiumManageContentHeaderCell.swift in Sources */,
 				B90DB06D2E5CB90100A67D4A /* LiveMuteManager.swift in Sources */,
 				B91EF0F32CF0F00300299ECF /* PremiumManageContentFooterCell.swift in Sources */,
 				B91EF0D12CEA23C300299ECF /* PremiumManageNameController.swift in Sources */,
+				CA64EB322EDB33C5003E46C5 /* TransactionsTableViewCell.swift in Sources */,
 				B91E56EA2CB98E2B00C14809 /* AdvancedSearchEnumPickerController.swift in Sources */,
 				9ECFD3202A0138BF000D1B2F /* MainNavigationController.swift in Sources */,
 				9E0DEAF629FD437300145E08 /* OnboardingFollowSuggestionsController.swift in Sources */,
@@ -4105,6 +4188,7 @@
 				9E9F2F8029F6AB6400A9CDF3 /* IntroVideoController.swift in Sources */,
 				B91EF0CF2CEA1B6F00299ECF /* PremiumManageContentDataCell.swift in Sources */,
 				CA9867192E80619A0081CF78 /* FavoritesPersistenceService.swift in Sources */,
+				CA1F20182EDB4DB1003070E8 /* QRScannerView.swift in Sources */,
 				CA98671A2E80619A0081CF78 /* NoiseHandshakeCoordinator.swift in Sources */,
 				CA98671B2E80619A0081CF78 /* PeerIDResolver.swift in Sources */,
 				CA98671C2E80619A0081CF78 /* NostrEmbeddedBitChat.swift in Sources */,
@@ -4253,6 +4337,7 @@
 				9EF4BFD02A955FB5003396AA /* NewPostButton.swift in Sources */,
 				B94F2BC22AD57AD20041181B /* TransactionHeader.swift in Sources */,
 				9E6924A42A02925F00CAC54C /* MainTabBarController.swift in Sources */,
+				CA68B9E62ED766FE00C5BE59 /* ReceivePaymentVC.swift in Sources */,
 				B9DAA4542D490AB800B00B82 /* SettingsNewNwcQRController.swift in Sources */,
 				9E83DF7D2A5BF95500F2C379 /* SettingsZapsViewController.swift in Sources */,
 				B9B1ABA12B33364300837312 /* TransactionAmountCell.swift in Sources */,
@@ -4283,6 +4368,7 @@
 				93B7FE762A0AB0A5005AE313 /* NostrProfile.swift in Sources */,
 				B9370EE92DE6173E004A9760 /* NWCWalletManager.swift in Sources */,
 				B9CE4DCF2B7A63330060A1B8 /* PopupDatePickerController.swift in Sources */,
+				CA64EB2C2EDB07ED003E46C5 /* BreezViewModel.swift in Sources */,
 				B9370EE72DE5EE40004A9760 /* PrimalWalletManager.swift in Sources */,
 				B90585382C9DDFD600FC4108 /* SettingsDevModeController.swift in Sources */,
 				B9E0BE422BCD621B00FFF2BC /* LightningInvoiceView.swift in Sources */,
@@ -4311,6 +4397,7 @@
 				9E8834A62A274A88005DB548 /* PostRequestResult+Processing.swift in Sources */,
 				9E8834C42A33C25F005DB548 /* RoundedSmallButton.swift in Sources */,
 				B9CE4DDB2B8513410060A1B8 /* PopupUIPickerController.swift in Sources */,
+				CA68B9D02ED75B0200C5BE59 /* WalletDashboardVC.swift in Sources */,
 				B94F2BEF2AE6E4340041181B /* WalletSpinnerViewController.swift in Sources */,
 				B906AB0D2C9B2D830089813F /* ProfileLastVisit.swift in Sources */,
 				93906B942A55B5D000962A94 /* NostrObject.swift in Sources */,
@@ -4450,6 +4537,7 @@
 				B9E67E912D07682B006BB397 /* FeedElementArticleCell.swift in Sources */,
 				9E8834AE2A2A33A3005DB548 /* LinkPreview.swift in Sources */,
 				B9A335252E54F3A1000B2CA7 /* FeedElementLivePreviewCell.swift in Sources */,
+				CA42C71A2EDB41D3003E173D /* EnterSatsVC.swift in Sources */,
 				B99E03AB2C0DFB9F006CCECB /* PostTagsView.swift in Sources */,
 				B9C672E42E2FDDA900243B45 /* SimpleHelperViews.swift in Sources */,
 				B91B45B32BEE23310073A539 /* FollowUsersMutelistRequest.swift in Sources */,

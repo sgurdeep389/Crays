@@ -371,7 +371,7 @@ private extension MenuContainerController {
     @objc func walletButtonPressed() {
         mainTabBarController?.setTabBarHidden(true, animated: true)
        if WalletManager1.shared.getSavedMnemonic() != nil{
-            showViewController(WalletHomeViewController())
+            showViewController(WalletDashboardVC())
         }
         else{
             showViewController(WalletViewController())
