@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A33AC322ED707C600F818D8 /* SocialLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33AC312ED707C600F818D8 /* SocialLinkViewController.swift */; };
+		B9F780A12F00000100ABCDEF /* SocialLinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F780A02F00000100ABCDEF /* SocialLinkType.swift */; };
+		B9F780B12F00000100ABCDEF /* ProfileSocialLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F780B02F00000100ABCDEF /* ProfileSocialLinksView.swift */; };
+		B9F780C12F00000100ABCDEF /* ProfileSubscriptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F780C02F00000100ABCDEF /* ProfileSubscriptionCardView.swift */; };
+		B9F780D12F00000100ABCDEF /* SubscriptionStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F780D02F00000100ABCDEF /* SubscriptionStatView.swift */; };
+		B9F780E12F00000100ABCDEF /* SubscriptionPricingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F780E02F00000100ABCDEF /* SubscriptionPricingViewController.swift */; };
+		B9F780F12F00000100ABCDEF /* SubscriptionSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F780F02F00000100ABCDEF /* SubscriptionSettingsStore.swift */; };
+		B9FF01022F5C0A0E00432109 /* PaidPostEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FF01012F5C0A0E00432109 /* PaidPostEncryptor.swift */; };
 		930497A329FAD69B003938F2 /* Mentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930497A229FAD69B003938F2 /* Mentions.swift */; };
 		930497A929FAD7C3003938F2 /* NostrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930497A829FAD7C3003938F2 /* NostrResponse.swift */; };
 		9309B4FC2A5D957B0088C1E8 /* CryptoHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9309B4FB2A5D957B0088C1E8 /* CryptoHelpers.swift */; };
@@ -653,6 +661,8 @@
 		CA4DD0972E7B236E006C4C23 /* Frame 1948755992.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4DD0962E7B236E006C4C23 /* Frame 1948755992.png */; };
 		CA5970862E8454CE00B0BA8D /* devVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA5970852E8454CE00B0BA8D /* devVideo.mp4 */; };
 		CA6266822ED37C27006FCC19 /* BreezSdkSpark in Frameworks */ = {isa = PBXBuildFile; productRef = CA6266812ED37C27006FCC19 /* BreezSdkSpark */; };
+		CA68B9BA2ED4CEC600C5BE59 /* GRDB-dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */; };
+		CA68B9BB2ED4CEC600C5BE59 /* GRDB-dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CA6EA51E2ED200E3004908FF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA51D2ED200E3004908FF /* WalletViewController.swift */; };
 		CA6EA5202ED2011C004908FF /* ActionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA51F2ED2011C004908FF /* ActionCardView.swift */; };
 		CA6EA5222ED2015B004908FF /* CreateWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EA5212ED2015B004908FF /* CreateWalletViewController.swift */; };
@@ -715,7 +725,6 @@
 		CAB6C9562ED2225E000B2951 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9552ED2225E000B2951 /* Down */; };
 		CAB6C9582ED22266000B2951 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9572ED22266000B2951 /* FLAnimatedImage */; };
 		CAB6C95A2ED2226E000B2951 /* GenericJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9592ED2226E000B2951 /* GenericJSON */; };
-		CAB6C95C2ED22275000B2951 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C95B2ED22275000B2951 /* GRDB */; };
 		CAB6C95E2ED22293000B2951 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C95D2ED22293000B2951 /* KeychainAccess */; };
 		CAB6C9602ED2229C000B2951 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C95F2ED2229C000B2951 /* Kingfisher */; };
 		CAB6C9622ED222A9000B2951 /* LightningDevKit in Frameworks */ = {isa = PBXBuildFile; productRef = CAB6C9612ED222A9000B2951 /* LightningDevKit */; };
@@ -765,6 +774,7 @@
 			dstSubfolder = Frameworks;
 			files = (
 				B9CC1ADF2DF38ECB0020BFC2 /* PrimalShared.xcframework in Embed Frameworks */,
+				CA68B9BB2ED4CEC600C5BE59 /* GRDB-dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};
@@ -781,6 +791,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A33AC312ED707C600F818D8 /* SocialLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinkViewController.swift; sourceTree = "<group>"; };
+		B9F780A02F00000100ABCDEF /* SocialLinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinkType.swift; sourceTree = "<group>"; };
+		B9FF01012F5C0A0E00432109 /* PaidPostEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PaidPostEncryptor.swift; path = Primal/Common/Helpers/PaidPostEncryptor.swift; sourceTree = SOURCE_ROOT; };
+		B9F780B02F00000100ABCDEF /* ProfileSocialLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialLinksView.swift; sourceTree = "<group>"; };
+		B9F780C02F00000100ABCDEF /* ProfileSubscriptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscriptionCardView.swift; sourceTree = "<group>"; };
+		B9F780D02F00000100ABCDEF /* SubscriptionStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatView.swift; sourceTree = "<group>"; };
+		B9F780E02F00000100ABCDEF /* SubscriptionPricingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPricingViewController.swift; sourceTree = "<group>"; };
+		B9F780F02F00000100ABCDEF /* SubscriptionSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSettingsStore.swift; sourceTree = "<group>"; };
 		930497A229FAD69B003938F2 /* Mentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mentions.swift; sourceTree = "<group>"; };
 		930497A829FAD7C3003938F2 /* NostrResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostrResponse.swift; sourceTree = "<group>"; };
 		9309B4FB2A5D957B0088C1E8 /* CryptoHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHelpers.swift; sourceTree = "<group>"; };
@@ -1581,13 +1599,13 @@
 				CAB6C9562ED2225E000B2951 /* Down in Frameworks */,
 				CAB6C9602ED2229C000B2951 /* Kingfisher in Frameworks */,
 				CAB6C9642ED222B5000B2951 /* Lottie in Frameworks */,
-				CAB6C95C2ED22275000B2951 /* GRDB in Frameworks */,
 				CAB6C9682ED222C0000B2951 /* NostrSDK in Frameworks */,
 				CAB6C9582ED22266000B2951 /* FLAnimatedImage in Frameworks */,
 				CA16874B2ED23C62006726E9 /* Bip39 in Frameworks */,
 				CAB6C96E2ED222DE000B2951 /* Ink in Frameworks */,
 				CAB6C9622ED222A9000B2951 /* LightningDevKit in Frameworks */,
 				CAB6C95A2ED2226E000B2951 /* GenericJSON in Frameworks */,
+				CA68B9BA2ED4CEC600C5BE59 /* GRDB-dynamic in Frameworks */,
 			);
 		};
 		939330FF29A3E370003954C2 /* Frameworks */ = {
@@ -1753,9 +1771,18 @@
 				9E6B38CC29F9488400144073 /* Networking */,
 				9393313829A3E5C2003954C2 /* Font */,
 				9393313529A3E59D003954C2 /* Extension */,
+				B9F781002F00000100ABCDEF /* Models */,
 				936DD9F82A3B6A2900A65F79 /* PrimalNotifications.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B9F781002F00000100ABCDEF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B9F780A02F00000100ABCDEF /* SocialLinkType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9393312C29A3E534003954C2 /* State */ = {
@@ -1777,6 +1804,7 @@
 				B94A0E232AA8D18800DEBFE1 /* ProcessingMessages.swift */,
 				B94F2BB02AD053020041181B /* PrimalWalletRequest.swift */,
 				B91E57192CD940CB00C14809 /* NoteProcessor.swift */,
+				B9FF01012F5C0A0E00432109 /* PaidPostEncryptor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1961,6 +1989,7 @@
 				B98DD8DA2C65055B00E8369A /* MediaManager.swift */,
 				B91E57012CC6B5D100C14809 /* KeyboardManager.swift */,
 				B9C672D32E1FEF5000243B45 /* LiveEventManager.swift */,
+				B9F780F02F00000100ABCDEF /* SubscriptionSettingsStore.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2225,6 +2254,8 @@
 				B9DAA45B2D5154E400B00B82 /* LegendList */,
 				9E8834B22A3239CF005DB548 /* Views */,
 				9E8834B02A320E90005DB548 /* ProfileViewController.swift */,
+				B9F780E02F00000100ABCDEF /* SubscriptionPricingViewController.swift */,
+				0A33AC312ED707C600F818D8 /* SocialLinkViewController.swift */,
 				B9DAA4552D4949EA00B00B82 /* ProfilePremiumCardController.swift */,
 				B906AAF82C9313E20089813F /* UserListController.swift */,
 			);
@@ -2238,6 +2269,9 @@
 				9E8834B52A323C3B005DB548 /* QRCopyView.swift */,
 				9E8834B92A323CF2005DB548 /* ProfileStatDisplayView.swift */,
 				9E8834BB2A3242C0005DB548 /* ProfileInfoCell.swift */,
+				B9F780B02F00000100ABCDEF /* ProfileSocialLinksView.swift */,
+				B9F780C02F00000100ABCDEF /* ProfileSubscriptionCardView.swift */,
+				B9F780D02F00000100ABCDEF /* SubscriptionStatView.swift */,
 				9E8834BD2A328767005DB548 /* CircleIconButton.swift */,
 				9E8834BF2A328966005DB548 /* BrightSmallButton.swift */,
 				9E8834C32A33C25F005DB548 /* RoundedSmallButton.swift */,
@@ -3625,7 +3659,6 @@
 				CAB6C9552ED2225E000B2951 /* Down */,
 				CAB6C9572ED22266000B2951 /* FLAnimatedImage */,
 				CAB6C9592ED2226E000B2951 /* GenericJSON */,
-				CAB6C95B2ED22275000B2951 /* GRDB */,
 				CAB6C95D2ED22293000B2951 /* KeychainAccess */,
 				CAB6C95F2ED2229C000B2951 /* Kingfisher */,
 				CAB6C9612ED222A9000B2951 /* LightningDevKit */,
@@ -3637,6 +3670,7 @@
 				CAB6C96D2ED222DE000B2951 /* Ink */,
 				CA16874A2ED23C62006726E9 /* Bip39 */,
 				CA6266812ED37C27006FCC19 /* BreezSdkSpark */,
+				CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */,
 			);
 			productName = Primal;
 			productReference = 939330F229A3E36F003954C2 /* Crays.app */;
@@ -3757,7 +3791,6 @@
 				CAB6C9352ED21FCF000B2951 /* XCRemoteSwiftPackageReference "Down" */,
 				CAB6C9362ED21FFD000B2951 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 				CAB6C9372ED2204D000B2951 /* XCRemoteSwiftPackageReference "generic-json-swift" */,
-				CAB6C9382ED22075000B2951 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				CAB6C9392ED2208D000B2951 /* XCRemoteSwiftPackageReference "ink" */,
 				CAB6C93A2ED220A7000B2951 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				CAB6C93B2ED220CB000B2951 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -3769,6 +3802,7 @@
 				CAB6C9412ED2221D000B2951 /* XCRemoteSwiftPackageReference "nostr-sdk-ios" */,
 				CA1687492ED23C3E006726E9 /* XCRemoteSwiftPackageReference "Bip39.swift" */,
 				CA6266802ED37C18006FCC19 /* XCRemoteSwiftPackageReference "breez-sdk-spark-swift" */,
+				CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 939330F329A3E36F003954C2 /* Products */;
@@ -3903,10 +3937,15 @@
 				9E79D3A32A01530B008404DB /* Date+Extra.swift in Sources */,
 				93CACB0129F525B6003BBCE5 /* mem.c in Sources */,
 				B9C6D2402CAC53E800B2EEBE /* ZappingViewController.swift in Sources */,
+				B9F780F12F00000100ABCDEF /* SubscriptionSettingsStore.swift in Sources */,
+				B9FF01022F5C0A0E00432109 /* PaidPostEncryptor.swift in Sources */,
 				B9FAC65B2D42C5FA00B57EF6 /* SettingsNewNWCController.swift in Sources */,
 				B900328F2BD26F4D00ADD2E5 /* NoteLikesViewController.swift in Sources */,
 				B9E67EB62D0A1F8D006BB397 /* MainThreadElementSmallZapGalleryCell.swift in Sources */,
 				9E8834BA2A323CF2005DB548 /* ProfileStatDisplayView.swift in Sources */,
+				B9F780B12F00000100ABCDEF /* ProfileSocialLinksView.swift in Sources */,
+				B9F780C12F00000100ABCDEF /* ProfileSubscriptionCardView.swift in Sources */,
+				B9F780D12F00000100ABCDEF /* SubscriptionStatView.swift in Sources */,
 				B99E038C2C05682B006CCECB /* ReadsViewController.swift in Sources */,
 				B90032852BD0183600ADD2E5 /* NoteZapsRequest.swift in Sources */,
 				B9C6D23B2CA5BDE300B2EEBE /* ExploreFeedPreviewParentController.swift in Sources */,
@@ -3927,6 +3966,7 @@
 				B98DD8C02C52A59900E8369A /* HighlightCommentsController.swift in Sources */,
 				936DD9F92A3B6A2900A65F79 /* PrimalNotifications.swift in Sources */,
 				9E83DF832A717DC600F2C379 /* EditProfileViewController.swift in Sources */,
+				B9F780E12F00000100ABCDEF /* SubscriptionPricingViewController.swift in Sources */,
 				B9A335272E5612C9000B2CA7 /* ThreadElementLivePreviewCell.swift in Sources */,
 				B94A0E302ABA22A600DEBFE1 /* ChatTextViewManager.swift in Sources */,
 				B9009B502B07B14B002B0613 /* SignInInputField.swift in Sources */,
@@ -3996,6 +4036,7 @@
 				9E4AAAAA2A12288600C962BD /* UILabel+Extra.swift in Sources */,
 				9EF4BFCA2A8BFD16003396AA /* FontSlider.swift in Sources */,
 				9393313229A3E56F003954C2 /* NostrContent.swift in Sources */,
+				B9F780A12F00000100ABCDEF /* SocialLinkType.swift in Sources */,
 				B98DD8D52C6259B100E8369A /* ArticleFeedManager.swift in Sources */,
 				B9C672E92E2FF89C00243B45 /* LiveVideoChatZapCell.swift in Sources */,
 				B9C672D42E1FEF5000243B45 /* LiveEventManager.swift in Sources */,
@@ -4117,6 +4158,7 @@
 				CA9867252E80619A0081CF78 /* NoiseSecurityConsiderations.swift in Sources */,
 				CA9867262E80619A0081CF78 /* NostrTransport.swift in Sources */,
 				CA9867272E80619A0081CF78 /* BLEService.swift in Sources */,
+				0A33AC322ED707C600F818D8 /* SocialLinkViewController.swift in Sources */,
 				CA9867282E80619A0081CF78 /* MessageDeduplicator.swift in Sources */,
 				CA9867292E80619A0081CF78 /* VerificationViews.swift in Sources */,
 				CA98672A2E80619A0081CF78 /* NostrRelayManager.swift in Sources */,
@@ -4722,7 +4764,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MARKETING_VERSION = 1.2;
+				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crays.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4777,7 +4821,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MARKETING_VERSION = 1.2;
+				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crays.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5061,6 +5107,14 @@
 				minimumVersion = 0.4.2;
 			};
 		};
+		CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				branch = GRDB7;
+				kind = branch;
+			};
+		};
 		CAB6C9342ED21FAF000B2951 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
@@ -5091,14 +5145,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
-			};
-		};
-		CAB6C9382ED22075000B2951 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/groue/GRDB.swift.git";
-			requirement = {
-				branch = GRDB7;
-				kind = branch;
 			};
 		};
 		CAB6C9392ED2208D000B2951 /* XCRemoteSwiftPackageReference "ink" */ = {
@@ -5186,6 +5232,11 @@
 			package = CA6266802ED37C18006FCC19 /* XCRemoteSwiftPackageReference "breez-sdk-spark-swift" */;
 			productName = BreezSdkSpark;
 		};
+		CA68B9B92ED4CEC600C5BE59 /* GRDB-dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = "GRDB-dynamic";
+		};
 		CAB6C9532ED22256000B2951 /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CAB6C9342ED21FAF000B2951 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
@@ -5205,11 +5256,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CAB6C9372ED2204D000B2951 /* XCRemoteSwiftPackageReference "generic-json-swift" */;
 			productName = GenericJSON;
-		};
-		CAB6C95B2ED22275000B2951 /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAB6C9382ED22075000B2951 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
-			productName = GRDB;
 		};
 		CAB6C95D2ED22293000B2951 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;

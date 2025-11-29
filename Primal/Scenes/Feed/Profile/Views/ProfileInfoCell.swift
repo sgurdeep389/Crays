@@ -20,6 +20,9 @@ protocol ProfileInfoCellDelegate: AnyObject {
     func followersPressed()
     func followingPressed()
     func premiumPillPressed()
+    func linkButtonPressed()
+    func socialLinkPressed(_ url: URL)
+    func manageSubscriptionPressed()
     
     func didSelectTab(_ tab: Int)
 }
@@ -34,6 +37,7 @@ class ProfileCellNantesDelegate {
 class ProfileInfoCell: UITableViewCell {
     let qrButton = CircleIconButton(icon: UIImage(named: "profileQR"))
     let messageButton = CircleIconButton(icon: UIImage(named: "profileMessage"))
+    let linkButton = CircleIconButton(icon: UIImage(named: "linkIcon"))
     let followButton = BrightSmallButton(title: "follow").constrainToSize(width: 100)
     let unfollowButton = RoundedSmallButton(text: "unfollow").constrainToSize(width: 100)
     let editProfile = RoundedSmallButton(text: "edit profile")
@@ -50,8 +54,17 @@ class ProfileInfoCell: UITableViewCell {
     let descLabel = NantesLabel()
     let linkView = UILabel()
     let followedByView = FollowedByView()
+    let socialLinksView = ProfileSocialLinksView()
+    let subscriptionCard = ProfileSubscriptionCardView()
     
-    let infoStack = ProfileTabSelectionView(tabs: ["notes", "replies", "reads", "media"])
+    private let infoStack = ProfileTabSelectionView(items: [
+        ProfileTabItem(title: "Notes", icon: UIImage(systemName: "doc.text")),
+        ProfileTabItem(title: "Replies", icon: UIImage(systemName: "arrowshape.turn.up.left")),
+        ProfileTabItem(title: "Reads", icon: UIImage(systemName: "book")),
+        ProfileTabItem(title: "Media", icon: UIImage(systemName: "photo.on.rectangle")),
+        ProfileTabItem(title: "Subscribers", icon: UIImage(systemName: "person.2")),
+        ProfileTabItem(title: "Paid", icon: UIImage(systemName: "creditcard"))
+    ])
     
     weak var delegate: ProfileInfoCellDelegate?
     
@@ -104,20 +117,16 @@ class ProfileInfoCell: UITableViewCell {
         descLabel.attributedText = parsedDescription
         linkView.text = user.website.trimmingCharacters(in: .whitespaces)
         
+        socialLinksView.update(with: socialLinkItems(from: user.userSocialLinks))
+        subscriptionCard.configure(with: SubscriptionSettingsStore.shared.settings, isCurrentUser: user.isCurrentUser)
+        
         if let stats {
             infoStack.isLoading = false
-            
             followingLabel.attributedText = infoString(count: stats.follows, text: "following")
             followersLabel.attributedText = infoString(count: stats.followers, text: "followers")
-            
-            zip(infoStack.buttons, [stats.notes, stats.replies, stats.articles, stats.media]).forEach { button, count in
-                button.text = count.shortenedLocalized()
-                button.isEnabled = count > 0
-            }
         } else {
             followingLabel.attributedText = infoString(text: "following")
             followersLabel.attributedText = infoString(text: "followers")
-            
             infoStack.isLoading = true
         }
         
@@ -127,6 +136,7 @@ class ProfileInfoCell: UITableViewCell {
         infoStack.set(selectedTab, animated: false)
         
         editProfile.isHidden = !user.isCurrentUser
+        linkButton.isHidden = !user.isCurrentUser
 
         if user.isCurrentUser {
             followButton.isHidden = true
@@ -186,7 +196,7 @@ extension ProfileCellNantesDelegate: NantesLabelDelegate {
 
 private extension ProfileInfoCell {
     func setup() {
-        let actionStack = UIStackView(arrangedSubviews: [SpacerView(width: 400, priority: .defaultLow), qrButton, messageButton, followButton, unfollowButton, editProfile])
+        let actionStack = UIStackView(arrangedSubviews: [SpacerView(width: 400, priority: .defaultLow), qrButton, linkButton, messageButton, followButton, unfollowButton, editProfile])
         actionStack.spacing = 8
         actionStack.alignment = .bottom
         
@@ -209,16 +219,25 @@ private extension ProfileInfoCell {
         descLabel.font = .appFont(withSize: 14, weight: .regular)
         descLabel.numberOfLines = 0
         
-        let mainStack = UIStackView(arrangedSubviews: [actionStack, primaryStack, secondaryLabel, followStack, descLabel, linkView, followedByView, infoStack])
+        socialLinksView.didSelect = { [weak self] url in
+            self?.delegate?.socialLinkPressed(url)
+        }
+        subscriptionCard.onManageTapped = { [weak self] in
+            self?.delegate?.manageSubscriptionPressed()
+        }
+        
+        let mainStack = UIStackView(arrangedSubviews: [actionStack, socialLinksView, primaryStack, secondaryLabel, followStack, descLabel, linkView, followedByView, subscriptionCard, infoStack])
         mainStack.axis = .vertical
-        mainStack.alignment = .leading
+        mainStack.alignment = .fill
         mainStack.setCustomSpacing(14, after: actionStack)
+        mainStack.setCustomSpacing(12, after: socialLinksView)
         mainStack.setCustomSpacing(8, after: primaryStack)
         mainStack.setCustomSpacing(12, after: secondaryLabel)
         mainStack.setCustomSpacing(10, after: followStack)
         mainStack.setCustomSpacing(8, after: descLabel)
         mainStack.setCustomSpacing(10, after: linkView)
         mainStack.setCustomSpacing(10, after: followedByView)
+        mainStack.setCustomSpacing(16, after: subscriptionCard)
         
         infoStack.pinToSuperview(edges: .horizontal)
         
@@ -248,6 +267,10 @@ private extension ProfileInfoCell {
             self?.delegate?.qrPressed()
         }), for: .touchUpInside)
         
+        linkButton.addAction(.init(handler: { [weak self] _ in
+            self?.delegate?.linkButtonPressed()
+        }), for: .touchUpInside)
+        
         editProfile.addAction(.init(handler: { [weak self] _ in
             self?.delegate?.editProfilePressed()
         }), for: .touchUpInside)
@@ -268,6 +291,17 @@ private extension ProfileInfoCell {
         followingLabel.addGestureRecognizer(BindableTapGestureRecognizer(action: { [weak self] in self?.delegate?.followingPressed() }))
         followersLabel.isUserInteractionEnabled = true
         followersLabel.addGestureRecognizer(BindableTapGestureRecognizer(action: { [weak self] in self?.delegate?.followersPressed() }))
+    }
+    
+    func socialLinkItems(from links: UserSocialLinks?) -> [ProfileSocialLinkItem] {
+        guard let links else { return [] }
+        return SocialLinkType.allCases.compactMap { type in
+            guard
+                let value = links.value(for: type),
+                let url = type.url(from: value)
+            else { return nil }
+            return ProfileSocialLinkItem(type: type, url: url)
+        }
     }
     
     @objc func followPressed() {
