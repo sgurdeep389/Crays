@@ -158,40 +158,6 @@ struct PrimalSettings: Codable, Identifiable, Hashable {
     }
 }
 
-
-struct UserSocialLinks: Codable, Hashable {
-    var x: String?
-    var instagram: String?
-    var youtube: String?
-    var snapchat: String?
-    var facebook: String?
-    var tiktok: String?
-    
-    var isEmpty: Bool { dictionaryRepresentation().isEmpty }
-    
-    func value(for type: SocialLinkType) -> String? {
-        switch type {
-        case .x: return x
-        case .instagram: return instagram
-        case .youtube: return youtube
-        case .snapchat: return snapchat
-        case .facebook: return facebook
-        case .tiktok: return tiktok
-        }
-    }
-    
-    func dictionaryRepresentation() -> [String: String] {
-        var dict: [String: String] = [:]
-        if let value = x?.nilIfEmpty { dict[SocialLinkType.x.storageKey] = value }
-        if let value = instagram?.nilIfEmpty { dict[SocialLinkType.instagram.storageKey] = value }
-        if let value = youtube?.nilIfEmpty { dict[SocialLinkType.youtube.storageKey] = value }
-        if let value = snapchat?.nilIfEmpty { dict[SocialLinkType.snapchat.storageKey] = value }
-        if let value = facebook?.nilIfEmpty { dict[SocialLinkType.facebook.storageKey] = value }
-        if let value = tiktok?.nilIfEmpty { dict[SocialLinkType.tiktok.storageKey] = value }
-        return dict
-    }
-}
-
 struct PrimalUser : Codable, Identifiable, Hashable {
     let id: String
     let pubkey: String
@@ -211,7 +177,6 @@ struct PrimalUser : Codable, Identifiable, Hashable {
     let sig: String
     let deleted: Bool?
     var rawData: String?
-    var userSocialLinks: UserSocialLinks?
     
     init?(nostrUser: NostrContent?, nostrPost: NostrContent? = nil) {
         guard let userMeta: JSON = try? JSONDecoder().decode(JSON.self, from: (nostrUser?.content ?? "{}").data(using: .utf8)!) else {
@@ -244,30 +209,6 @@ struct PrimalUser : Codable, Identifiable, Hashable {
         self.created_at = nostrUser?.created_at ?? -1
         self.sig = nostrUser?.sig ?? ""
         self.deleted = tempDeleted
-        
-        if let socialJSON = userMeta.objectValue?["social_links"]?.objectValue {
-            var socialDict: [String: String] = [:]
-            for (key, value) in socialJSON {
-                if case let .string(stringValue) = value {
-                    socialDict[key] = stringValue
-                }
-            }
-            
-            if socialDict.isEmpty {
-                self.userSocialLinks = nil
-            } else {
-                self.userSocialLinks = UserSocialLinks(
-                    x: socialDict[SocialLinkType.x.storageKey],
-                    instagram: socialDict[SocialLinkType.instagram.storageKey],
-                    youtube: socialDict[SocialLinkType.youtube.storageKey],
-                    snapchat: socialDict[SocialLinkType.snapchat.storageKey],
-                    facebook: socialDict[SocialLinkType.facebook.storageKey],
-                    tiktok: socialDict[SocialLinkType.tiktok.storageKey]
-                )
-            }
-        } else {
-            self.userSocialLinks = nil
-        }
     }
     
     init(pubkey: String) {
@@ -399,7 +340,7 @@ extension PrimalUser {
     }()
     
     var profileData: NostrProfile {
-        let profile = NostrProfile(
+        NostrProfile(
             name: name,
             display_name: displayName,
             about: about,
@@ -410,12 +351,6 @@ extension PrimalUser {
             lud16: lud16,
             nip05: nip05
         )
-        
-        if let linksDictionary = userSocialLinks?.dictionaryRepresentation(), !linksDictionary.isEmpty {
-            profile.social_links = linksDictionary
-        }
-        
-        return profile
     }
 }
 

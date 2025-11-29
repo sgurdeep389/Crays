@@ -21,6 +21,7 @@ class WalletDashboardVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         self.tblTransactions.delegate = self
         self.tblTransactions.dataSource = self
         self.tblTransactions.register(UINib(nibName: "TransactionsTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionsTableViewCell")
@@ -35,7 +36,13 @@ class WalletDashboardVC: UIViewController {
         self.setShadow(yourView: self.viewTransactions)
         self.setShadow(yourView: self.viewMoney)
         self.title = "Lightning Wallet"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout",style: .plain,target: self,action: #selector(self.logoutTapped))
         self.createWallet()
+    }
+    
+    @objc func logoutTapped() {
+        BreezViewModel.shared.logOut()
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setShadow(yourView:UIView){
@@ -136,7 +143,7 @@ extension UIImage {
     func rotated(by degrees: CGFloat) -> UIImage? {
         let radians = degrees * .pi / 180
         
-        var newSize = CGRect(origin: .zero, size: size)
+        let newSize = CGRect(origin: .zero, size: size)
             .applying(CGAffineTransform(rotationAngle: radians))
             .integral.size
         

@@ -17,17 +17,10 @@ class WalletManager1 {
         UserDefaults.standard.string(forKey: "mnemonic")
     }
     
-    func saveMnemonic(_ mnemonic: String) {
+    func saveMnemonic(_ mnemonic: String?) {
         UserDefaults.standard.setValue(mnemonic, forKey: "mnemonic")
     }
-    
-    func saveLightningAddress(_ mnemonic: String) {
-        UserDefaults.standard.setValue(mnemonic, forKey: "LightningAddress")
-    }
-    
-    func getSavedLightningAddress() -> String? {
-        UserDefaults.standard.string(forKey: "LightningAddress")
-    }
+
     
 }
 

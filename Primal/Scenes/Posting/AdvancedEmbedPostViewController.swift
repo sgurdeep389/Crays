@@ -32,38 +32,6 @@ class AdvancedEmbedPostViewController: UIViewController {
     let clearButton = UIButton(configuration: .capsuleBackground3(text: "Clear")).constrainToSize(width: 80, height: 28)
     lazy var bottomStack = UIStackView(arrangedSubviews: [imageButton, cameraButton, atButton, UIView(), clearButton])
     
-    enum Visibility: Int, CaseIterable {
-        case `public`
-        case subscribers
-        case ppv
-        
-        var title: String {
-            switch self {
-            case .public: return "Public"
-            case .subscribers: return "Subscribers only"
-            case .ppv: return "PPV"
-            }
-        }
-        
-        var description: String {
-            switch self {
-            case .public: return ""
-            case .subscribers: return "Visible only to your paying subscribers."
-            case .ppv: return "Followers see a locked preview. Max 50,000 sats per post."
-            }
-        }
-    }
-    
-    private var selectedVisibility: Visibility = .public {
-        didSet { updateVisibilityUI() }
-    }
-    
-    private let visibilityContainer = UIView()
-    private let visibilityControl = UISegmentedControl(items: Visibility.allCases.map { $0.title })
-    private let visibilityDescription = UILabel()
-    private let ppvContainer = UIView()
-    private let ppvField = UITextField()
-    
     lazy var postButton = SmallPostButton(title: postButtonText)
     
     let embeddedPreviewStack = UIStackView(axis: .vertical, [])
@@ -166,20 +134,13 @@ private extension AdvancedEmbedPostViewController {
         atButton.setImage(UIImage(named: "AtIcon"), for: .normal)
         
         [imageButton, cameraButton, atButton].forEach {
-            $0.tintColor = .accent
-            $0.constrainToSize(44)
+            $0.tintColor = .foreground
+            $0.constrainToSize(48)
         }
         
-        setupVisibilityControls()
-        manager.paidZapAddress =
-            IdentityManager.instance.user?.lud16 ??
-            IdentityManager.instance.user?.lud06 ??
-            IdentityManager.instance.parsedUser?.data.lud16 ??
-            IdentityManager.instance.parsedUser?.data.lud06
-        
         bottomStack.isLayoutMarginsRelativeArrangement = true
-        bottomStack.layoutMargins = UIEdgeInsets(top: 8, left: 20, bottom: 28, right: 20)
-        bottomStack.spacing = 12
+        bottomStack.layoutMargins = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        bottomStack.spacing = 4
         bottomStack.alignment = .center
         
         let border = SpacerView(height: 1, priority: .required)
@@ -194,16 +155,12 @@ private extension AdvancedEmbedPostViewController {
         topStack.isLayoutMarginsRelativeArrangement = true
         topStack.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         
-        let mainStack = UIStackView(arrangedSubviews: [topStack, contentStack, visibilityContainer, visibilityDescription, ppvContainer, border, usersTableView, bottomStack])
+        let mainStack = UIStackView(arrangedSubviews: [topStack, contentStack, border, usersTableView, bottomStack])
         mainStack.axis = .vertical
-        mainStack.spacing = 8
         view.addSubview(mainStack)
         mainStack.pinToSuperview(edges: [.horizontal, .top])
         
-        mainStack.setCustomSpacing(12, after: contentStack)
-        mainStack.setCustomSpacing(6, after: visibilityContainer)
-        mainStack.setCustomSpacing(16, after: visibilityDescription)
-        mainStack.setCustomSpacing(16, after: ppvContainer)
+        mainStack.setCustomSpacing(16, after: imagesCollectionView)
         
         imagesCollectionView.imageDelegate = manager
         imagesCollectionView.isHidden = true
@@ -289,7 +246,6 @@ private extension AdvancedEmbedPostViewController {
         .store(in: &cancellables)
         
         manager.$isPosting.map({ !$0 }).assign(to: \.isUserInteractionEnabled, on: bottomStack).store(in: &cancellables)
-        manager.$isPosting.map({ !$0 }).assign(to: \.isUserInteractionEnabled, on: visibilityControl).store(in: &cancellables)
         
         Publishers.CombineLatest(
             manager.$users.map({ $0.isEmpty }).removeDuplicates(),
@@ -335,124 +291,6 @@ private extension AdvancedEmbedPostViewController {
             }
         }
         .store(in: &cancellables)
-    }
-    
-    func setupVisibilityControls() {
-        visibilityContainer.backgroundColor = .background
-        visibilityContainer.layer.cornerRadius = 30
-        visibilityContainer.layer.borderWidth = 1
-        visibilityContainer.layer.borderColor = UIColor.background3.cgColor
-        visibilityContainer.translatesAutoresizingMaskIntoConstraints = false
-        visibilityContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 76).isActive = true
-        
-        visibilityControl.translatesAutoresizingMaskIntoConstraints = false
-        visibilityControl.selectedSegmentIndex = selectedVisibility.rawValue
-        visibilityControl.backgroundColor = .clear
-        visibilityControl.apportionsSegmentWidthsByContent = true
-        visibilityControl.selectedSegmentTintColor = UIColor.accent.withAlphaComponent(0.15)
-        visibilityControl.setTitleTextAttributes([
-            .font: UIFont.appFont(withSize: 14, weight: .semibold),
-            .foregroundColor: UIColor.foreground
-        ], for: .normal)
-        visibilityControl.setTitleTextAttributes([
-            .font: UIFont.appFont(withSize: 14, weight: .semibold),
-            .foregroundColor: UIColor.accent
-        ], for: .selected)
-        visibilityControl.addTarget(self, action: #selector(visibilityChanged(_:)), for: .valueChanged)
-        
-        visibilityContainer.addSubview(visibilityControl)
-        NSLayoutConstraint.activate([
-            visibilityControl.topAnchor.constraint(equalTo: visibilityContainer.topAnchor, constant: 12),
-            visibilityControl.bottomAnchor.constraint(equalTo: visibilityContainer.bottomAnchor, constant: -12),
-            visibilityControl.leadingAnchor.constraint(equalTo: visibilityContainer.leadingAnchor, constant: 12),
-            visibilityControl.trailingAnchor.constraint(equalTo: visibilityContainer.trailingAnchor, constant: -12),
-            visibilityControl.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
-        ])
-        
-        visibilityDescription.font = .appFont(withSize: 13, weight: .regular)
-        visibilityDescription.textColor = .foreground3
-        visibilityDescription.numberOfLines = 0
-        visibilityDescription.textAlignment = .center
-        visibilityDescription.setContentCompressionResistancePriority(.required, for: .vertical)
-        visibilityDescription.setContentHuggingPriority(.required, for: .vertical)
-        
-        ppvContainer.layer.cornerRadius = 18
-        ppvContainer.layer.borderWidth = 1
-        ppvContainer.layer.borderColor = UIColor.background3.cgColor
-        ppvContainer.backgroundColor = .background
-        ppvContainer.isHidden = true
-        
-        let priceLabel = UILabel()
-        priceLabel.font = .appFont(withSize: 15, weight: .semibold)
-        priceLabel.textColor = .foreground
-        priceLabel.text = "Unlock price (sats)"
-        
-        ppvField.keyboardType = .numberPad
-        ppvField.font = .appFont(withSize: 18, weight: .medium)
-        ppvField.textColor = .foreground
-        ppvField.tintColor = .accent
-        ppvField.attributedPlaceholder = NSAttributedString(string: "5,000", attributes: [
-            .foregroundColor: UIColor.foreground4,
-            .font: UIFont.appFont(withSize: 18, weight: .medium)
-        ])
-        ppvField.addTarget(self, action: #selector(ppvPriceChanged), for: .editingChanged)
-        
-        let fieldContainer = UIView()
-        fieldContainer.layer.cornerRadius = 14
-        fieldContainer.layer.borderWidth = 1
-        fieldContainer.layer.borderColor = UIColor.background4.cgColor
-        fieldContainer.backgroundColor = .background2
-        fieldContainer.addSubview(ppvField)
-        ppvField.pinToSuperview(edges: [.leading, .trailing], padding: 12)
-        ppvField.pinToSuperview(edges: [.top, .bottom], padding: 10)
-        
-        let helperLabel = UILabel()
-        helperLabel.font = .appFont(withSize: 12, weight: .regular)
-        helperLabel.textColor = .foreground4
-        helperLabel.numberOfLines = 0
-        helperLabel.text = Visibility.ppv.description
-        
-        let ppvStack = UIStackView(arrangedSubviews: [priceLabel, fieldContainer, helperLabel])
-        ppvStack.axis = .vertical
-        ppvStack.spacing = 8
-        ppvStack.isLayoutMarginsRelativeArrangement = true
-        ppvStack.layoutMargins = UIEdgeInsets(top: 12, left: 16, bottom: 16, right: 16)
-        ppvContainer.addSubview(ppvStack)
-        ppvStack.pinToSuperview()
-        
-        updateVisibilityUI()
-    }
-    
-    func updateVisibilityUI() {
-        visibilityControl.selectedSegmentIndex = selectedVisibility.rawValue
-        let description = selectedVisibility.description
-        visibilityDescription.text = description
-        visibilityDescription.isHidden = description.isEmpty
-        ppvContainer.isHidden = selectedVisibility != .ppv
-        syncVisibilityModeWithManager()
-    }
-    
-    @objc func visibilityChanged(_ sender: UISegmentedControl) {
-        guard let mode = Visibility(rawValue: sender.selectedSegmentIndex) else { return }
-        selectedVisibility = mode
-    }
-    
-    @objc private func ppvPriceChanged() {
-        let digits = ppvField.text?.filter(\.isNumber) ?? ""
-        manager.paidPostPrice = Int(digits)
-        ppvField.text = digits
-    }
-    
-    private func syncVisibilityModeWithManager() {
-        switch selectedVisibility {
-        case .public:
-            manager.visibilityMode = .public
-        case .subscribers:
-            manager.visibilityMode = .subscribers
-        case .ppv:
-            manager.visibilityMode = .paid
-            manager.paidPostPrice = Int(ppvField.text?.filter(\.isNumber) ?? "")
-        }
     }
 }
 

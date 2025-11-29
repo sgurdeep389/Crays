@@ -1,5 +1,5 @@
 {
-  "originHash" : "2fcda510e8242846937af28f4ff94ae09d49516380b26df202c8f2c3ba45d935",
+  "originHash" : "bb9eb8b393ffacb8dc8dcb0151708c8ae69b0a70db0efacd36f53aa5711070d7",
   "pins" : [
     {
       "identity" : "bip39.swift",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/breez/breez-sdk-spark-swift.git",
       "state" : {
-        "revision" : "0f1cc148969abd499edc291877d8ac5fba3f2f61",
-        "version" : "0.4.2"
+        "revision" : "8a47ec492e91c4e5d8cb5b2c73ab2ccf06fc8b4a",
+        "version" : "0.5.0"
       }
     },
     {

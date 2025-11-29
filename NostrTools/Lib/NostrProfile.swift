@@ -779,11 +779,6 @@ final class NostrProfile: Codable {
         set(s) { set_str("lud16", s) }
     }
     
-    var social_links: [String: String]? {
-        get { return get_val("social_links") }
-        set(s) { set_val("social_links", s) }
-    }
-    
     var website_url: URL? {
         if self.website?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             return nil

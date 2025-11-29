@@ -26,12 +26,6 @@ extension NoteDraft {
 }
 
 final class PostingTextViewManager: TextViewManager, MetadataCoding {
-    enum PostVisibilityMode {
-        case `public`
-        case subscribers
-        case paid
-    }
-    
     @Published var userSearchText: String?
     @Published var users: [ParsedUser] = []
     @Published var isPosting: Bool = false
@@ -40,11 +34,6 @@ final class PostingTextViewManager: TextViewManager, MetadataCoding {
     @Published var postButtonTitle: String
     
     @Published var oldDraft: NoteDraft?
-    @Published var visibilityMode: PostVisibilityMode = .public
-    @Published var paidPostPrice: Int?
-    @Published var paidPreviewText: String?
-    @Published var paidThumbnailURL: String?
-    @Published var paidZapAddress: String?
     
     var extractReferences = true
     
@@ -325,18 +314,9 @@ final class PostingTextViewManager: TextViewManager, MetadataCoding {
         textView.text = ""
         media = []
         embeddedElements = []
-        visibilityMode = .public
-        paidPostPrice = nil
-        paidPreviewText = nil
-        paidThumbnailURL = nil
-        paidZapAddress = nil
     }
     
     func post(callback: @escaping (Bool, NostrObject?) -> Void) {
-        if visibilityMode == .paid {
-            postPaid(callback: callback)
-            return
-        }
         var draft = currentDraft
         
         guard let ev = NostrObject.post(draft, postingText: postingText, replyingToObject: replyingTo, embeddedElements: embeddedElements) else {
@@ -353,95 +333,6 @@ final class PostingTextViewManager: TextViewManager, MetadataCoding {
             callback(success, ev)
             if success {
                 DatabaseManager.instance.deleteDraft(draft)
-            }
-        }
-    }
-    
-    private func postPaid(callback: @escaping (Bool, NostrObject?) -> Void) {
-        guard let price = paidPostPrice, price > 0 else {
-            callback(false, nil)
-            return
-        }
-        
-        let trimmedText = postingText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedText.isEmpty else {
-            callback(false, nil)
-            return
-        }
-        
-        let payload = PaidPostPayload(
-            text: trimmedText,
-            media: media.compactMap { $0.state.url },
-            createdAt: Int64(Date().timeIntervalSince1970)
-        )
-        
-        guard
-            let payloadData = try? JSONEncoder().encode(payload),
-            let encryption = try? PaidPostEncryptor.encrypt(plaintext: payloadData)
-        else {
-            callback(false, nil)
-            return
-        }
-        
-        #if DEBUG
-        print("Paid post key (share securely after payment): \(encryption.keyBase64)")
-        #endif
-        
-        let previewText = paidPreviewText ?? Self.buildPreviewText(text: trimmedText, price: price)
-        let thumbnail = paidThumbnailURL ?? media.compactMap { $0.state.url }.first
-        let zapAddress = paidZapAddress
-            ?? IdentityManager.instance.user?.lud16
-            ?? IdentityManager.instance.user?.lud06
-            ?? IdentityManager.instance.parsedUser?.data.lud16
-            ?? IdentityManager.instance.parsedUser?.data.lud06
-        
-        let draft = currentDraft
-        isPosting = true
-        postButtonEnabledState = false
-        postButtonTitle = "Posting..."
-        
-        guard let events = NostrObject.paidPost(
-            draft,
-            ciphertextBase64: encryption.ciphertextBase64,
-            replyingToObject: replyingTo,
-            embeddedElements: embeddedElements,
-            price: price,
-            previewContent: previewText,
-            thumbnailURL: thumbnail,
-            ivBase64: encryption.ivBase64,
-            contentType: "text/markdown",
-            zapAddress: zapAddress
-        ) else {
-            isPosting = false
-            postButtonEnabledState = true
-            postButtonTitle = defaultPostButtonTitle
-            callback(false, nil)
-            return
-        }
-        
-        PostingManager.instance.sendEvent(events.paid) { [weak self] success in
-            guard let self else { return }
-            if success {
-                PostingManager.instance.sendEvent(events.preview) { previewSuccess in
-                    DispatchQueue.main.async {
-                        if previewSuccess {
-                            DatabaseManager.instance.deleteDraft(draft)
-                            self.reset()
-                        } else {
-                            self.isPosting = false
-                            self.postButtonEnabledState = true
-                            self.postButtonTitle = self.defaultPostButtonTitle
-                        }
-                        callback(previewSuccess, events.preview)
-                    }
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.isPosting = false
-                    self.postButtonEnabledState = true
-                    self.postButtonTitle = self.defaultPostButtonTitle
-                    callback(false, events.paid)
-                }
             }
         }
     }
@@ -673,17 +564,8 @@ private extension PostingTextViewManager {
                     return false
                 }()
                 
-                postButtonTitle = isUploadingImages ? "Uploading..." : defaultPostButtonTitle
-                
-                if self.visibilityMode == .paid {
-                    guard let price = self.paidPostPrice, price > 0 else {
-                        postButtonEnabledState = false
-                        postButtonTitle = "Set price"
-                        return
-                    }
-                }
-                
                 postButtonEnabledState = (!isEmpty || !images.isEmpty) && !isUploadingImages
+                postButtonTitle = isUploadingImages ? "Uploading..." : defaultPostButtonTitle
             }
             .store(in: &cancellables)
 
@@ -748,21 +630,6 @@ private extension PostingTextViewManager {
                 didChangeEvent.send(textView)
             }
             .store(in: &cancellables)
-    }
-}
-
-private struct PaidPostPayload: Codable {
-    let text: String
-    let media: [String]
-    let createdAt: Int64
-}
-
-private extension PostingTextViewManager {
-    static func buildPreviewText(text: String, price: Int) -> String {
-        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        let prefix = trimmed.prefix(80)
-        let body = prefix.isEmpty ? "New paid post" : String(prefix)
-        return "\(body)\(prefix.count == trimmed.count ? "" : "…") – unlock for \(price.localized()) sats."
     }
 }
 

@@ -8,6 +8,7 @@
 import BreezSdkSpark
 import Foundation
 import UIKit
+import BigNumber
 
 enum AddressType {
     case lightning
@@ -64,33 +65,33 @@ class BreezViewModel{
                 print("❌ No payment request received")
                 return nil
             }
-
+            
             print("Payment Request:", paymentRequest)
             print("Fees:", response?.fee ?? 0)
-
+            
             return paymentRequest
-
+            
         } catch {
             print("❌ Failed to create bitcoin address:", error.localizedDescription)
             return nil
         }
     }
-
+    
     
     func generateQRCode(from string: String, size: CGFloat = 300) -> UIImage? {
         let data = Data(string.utf8)
         let filter = CIFilter.qrCodeGenerator()
         filter.setValue(data, forKey: "inputMessage")
         filter.setValue("H", forKey: "inputCorrectionLevel")
-
+        
         guard let outputImage = filter.outputImage else { return nil }
-
+        
         // Scale the QR code to proper size
         let transform = CGAffineTransform(scaleX: size / outputImage.extent.size.width,
                                           y: size / outputImage.extent.size.height)
-
+        
         let scaledImage = outputImage.transformed(by: transform)
-
+        
         return UIImage(ciImage: scaledImage)
     }
     
@@ -99,7 +100,7 @@ class BreezViewModel{
             let available = try await self.sdk?.checkLightningAddressAvailable(req: CheckLightningAddressRequest(username: username))
             if available == true{
                 let request = RegisterLightningAddressRequest(username: username,description:"description")
-
+                
                 let addressInfo = try await self.sdk?.registerLightningAddress(request: request)
                 if let lightningAddress = addressInfo?.lightningAddress{
                     return (lightningAddress, nil)
@@ -167,14 +168,10 @@ class BreezViewModel{
         do {
             let paymentRequest = address
             // Set the amount you wish the pay the receiver (requires 'import BigNumber')
-            let amountSats = U128(sats)
+            let amountSats = BInt(sats)
             
-            let prepareResponse = try await self.sdk?.prepareSendPayment(
-                request: PrepareSendPaymentRequest(
-                    paymentRequest: paymentRequest,
-                    amount: amountSats
-                ))
-            
+            let prepareResponse = try await self.sdk?.prepareSendPayment(request: .init(paymentRequest: paymentRequest,amount: amountSats))
+
             if case let .bitcoinAddress(_, feeQuote) = prepareResponse?.paymentMethod {
                 let slowFeeSats = feeQuote.speedSlow.userFeeSat + feeQuote.speedSlow.l1BroadcastFeeSat
                 let mediumFeeSats = feeQuote.speedMedium.userFeeSat + feeQuote.speedMedium.l1BroadcastFeeSat
@@ -185,21 +182,17 @@ class BreezViewModel{
             }
         }
         catch {
-           print("❌ Failed to get node info:", error.localizedDescription)
-       }
+            print("❌ Failed to get node info:", error.localizedDescription)
+        }
     }
     
     func sendLightning(invoice: String, sats: String) async{
         do {
             let paymentRequest = invoice
-            // Optionally set the amount you wish the pay the receiver (requires 'import BigNumber')
-            let optionalAmountSats = U128(sats)
-            
-            let prepareResponse = try await self.sdk?.prepareSendPayment(
-                request: PrepareSendPaymentRequest(
-                    paymentRequest: paymentRequest,
-                    amount: optionalAmountSats
-                ))
+            // Set the amount you wish the pay the receiver (requires 'import BigNumber')
+            let amountSats = BInt(sats)
+
+            let prepareResponse = try await self.sdk?.prepareSendPayment(request: .init(paymentRequest: paymentRequest,amount: amountSats))
             
             if case let .bolt11Invoice(_, sparkTransferFeeSats, lightningFeeSats) = prepareResponse?.paymentMethod{
                 // Fees to pay via Lightning
@@ -212,7 +205,16 @@ class BreezViewModel{
         } catch {
             print("❌ Failed to get node info:", error.localizedDescription)
         }
-        
+    }
+    
+    func logOut(){
+        do {
+            Task{
+                try await self.sdk?.disconnect()
+                self.sdk = nil
+                WalletManager1.shared.saveMnemonic(nil)
+            }
+        }
     }
 }
 
