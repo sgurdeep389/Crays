@@ -18,6 +18,8 @@ class EnterSatsVC: UIViewController {
     // TextField
     @IBOutlet weak var satsTextField: UITextField!    // id="0Zb-vk-Ga5"
     @IBOutlet weak var textContainerView: UIView!
+    
+    
     // Warning Label (hidden)
     @IBOutlet weak var warningLabel: UILabel!         // id="BmR-nx-Cc3"
     
@@ -25,6 +27,20 @@ class EnterSatsVC: UIViewController {
     @IBOutlet weak var deleteButton: UIButton!        // id="vkR-cb-fIg"
     @IBOutlet weak var backButton: UIButton!          // id="2ZA-iD-mWm"
     @IBOutlet weak var continueButton: UIButton!
+    
+    @IBOutlet weak var enterSatStackView: UIStackView!
+    @IBOutlet weak var paymentConfirmStackView: UIStackView!
+    
+    @IBOutlet weak var enterSatView: UIStackView!
+    @IBOutlet weak var paymentConfirmView: UIStackView!
+    
+    @IBOutlet weak var amountLbl: UILabel!
+    @IBOutlet weak var paymentAddressLbl: UILabel!
+
+    
+    
+    
+    
     var back:(String) -> Void = { _ in}
     var address:String = ""
     var inputType:InputType?

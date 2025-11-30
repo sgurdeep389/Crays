@@ -133,7 +133,7 @@ class BreezViewModel{
     
     func getWalletBalance() async -> UInt64? {
         do {
-            if let info = try await self.sdk?.getInfo(request: .init(ensureSynced: true)) {
+            if let info = try await self.sdk?.getInfo(request: .init(ensureSynced: false)) {
                 let totalMsat = info.balanceSats
                 return totalMsat
             }
