@@ -1,3 +1,60 @@
+private func buildDefaultPostTags(
+        draft: NoteDraft,
+        replyingToObject: PrimalFeedPost?,
+        embeddedElements: [PostEmbedPreview]
+    ) -> [[String]] {
+        var allTags: [[String]] = []
+        var pubkeysToTag = Set<String>(draft.taggedUsers.map { $0.userPubkey })
+        
+        if let post = replyingToObject {
+            if let root = post.tags.last(where: { tag in tag[safe: 3] == "root" }) {
+                allTags.append(root)
+                allTags.append([post.referenceTagLetter, post.universalID, RelayHintManager.instance.getRelayHint(post.universalID), "reply"])
+            } else {
+                allTags.append([post.referenceTagLetter, post.universalID, RelayHintManager.instance.getRelayHint(post.universalID), "root"])
+            }
+            
+            pubkeysToTag.insert(post.pubkey)
+            pubkeysToTag.formUnion(post.tags.filter({ $0.first == "p" }).compactMap { $0[safe: 1] })
+        }
+        
+        for include in embeddedElements {
+            switch include {
+            case .highlight(let article, let highlight):
+                let articleID = article.asParsedContent.post.universalID
+                allTags.append(["e", highlight.event.id, "", "mention"])
+                allTags.append(["a", articleID, RelayHintManager.instance.getRelayHint(articleID), "mention"])
+                
+                pubkeysToTag.insert(article.event.pubkey)
+            case .post(let post):
+                allTags.append(["e", post.post.id, RelayHintManager.instance.getRelayHint(post.post.id), "mention"])
+                
+                pubkeysToTag.insert(post.user.data.pubkey)
+                pubkeysToTag.formUnion(post.post.tags.filter({ $0.first == "p" }).compactMap { $0[safe: 1] })
+            case .article(let article):
+                let quotingObject = article.asParsedContent.post
+                allTags.append([article.referenceTagLetter, quotingObject.universalID, RelayHintManager.instance.getRelayHint(quotingObject.universalID), "mention"])
+                
+                pubkeysToTag.insert(article.user.data.pubkey)
+                pubkeysToTag.formUnion(quotingObject.tags.filter({ $0.first == "p" }).compactMap { $0[safe: 1] })
+            case .live(let live):
+                pubkeysToTag.insert(live.event.pubkey)
+                
+                allTags.append(["a", live.event.universalID, RelayHintManager.instance.getRelayHint(live.event.universalID), "mention"])
+            case .invoice:
+                break
+            }
+        }
+        
+        if let keypair = getKeypair() {
+            pubkeysToTag.remove(keypair.hexVariant.pubkey)
+        }
+        
+        allTags += pubkeysToTag.map { ["p", $0, RelayHintManager.instance.userRelays[$0]?.first ?? "", "mention"] }
+        allTags += draft.text.extractHashtags().map({ ["t", $0.dropFirst().string] })
+        
+        return allTags
+    }
 //
 //  NostrObject+Extra.swift
 //  Primal
@@ -91,68 +148,79 @@ extension NostrObject {
     }
     
     static func post(_ draft: NoteDraft, postingText: String, replyingToObject: PrimalFeedPost?, embeddedElements: [PostEmbedPreview]) -> NostrObject? {
-        var allTags: [[String]] = []
-
-        /// The `e` tags are ordered at best effort to support the deprecated method of positional tags to maximize backwards compatibility
-        /// with clients that support replies but have not been updated to understand tag markers.
-        ///
-        /// https://github.com/nostr-protocol/nips/blob/master/10.md
-        ///
-        /// The tag to the root of the reply chain goes first.
-        /// The tag to the reply event being responded to goes last.
+        let tags = buildDefaultPostTags(draft: draft, replyingToObject: replyingToObject, embeddedElements: embeddedElements)
         
-        var pubkeysToTag = Set<String>(draft.taggedUsers.map { $0.userPubkey })
-        
-        if let post = replyingToObject {
-            if let root = post.tags.last(where: { tag in tag[safe: 3] == "root" }) {
-                allTags.append(root)
-                allTags.append([post.referenceTagLetter, post.universalID, RelayHintManager.instance.getRelayHint(post.universalID), "reply"])
-            } else {
-                // For top level replies (those replying directly to the root event), only the "root" marker should be used.
-                allTags.append([post.referenceTagLetter, post.universalID, RelayHintManager.instance.getRelayHint(post.universalID), "root"])
-            }
-            
-            pubkeysToTag.insert(post.pubkey)
-            pubkeysToTag.formUnion(post.tags.filter({ $0.first == "p" }).compactMap { $0[safe: 1] })
-        }
-        
-        for include in embeddedElements {
-            switch include {
-            case .highlight(let article, let highlight):
-                let articleID = article.asParsedContent.post.universalID
-                allTags.append(["e", highlight.event.id, "", "mention"])
-                allTags.append(["a", articleID, RelayHintManager.instance.getRelayHint(articleID), "mention"])
-
-                pubkeysToTag.insert(article.event.pubkey)
-            case .post(let post):
-                allTags.append(["e", post.post.id, RelayHintManager.instance.getRelayHint(post.post.id), "mention"])
-                
-                pubkeysToTag.insert(post.user.data.pubkey)
-                pubkeysToTag.formUnion(post.post.tags.filter({ $0.first == "p" }).compactMap { $0[safe: 1] })
-            case .article(let article):
-                let quotingObject = article.asParsedContent.post
-                allTags.append([article.referenceTagLetter, quotingObject.universalID, RelayHintManager.instance.getRelayHint(quotingObject.universalID), "mention"])
-                
-                pubkeysToTag.insert(article.user.data.pubkey)
-                pubkeysToTag.formUnion(quotingObject.tags.filter({ $0.first == "p" }).compactMap { $0[safe: 1] })
-            case .live(let live):
-                pubkeysToTag.insert(live.event.pubkey)
-                
-                allTags.append(["a", live.event.universalID, RelayHintManager.instance.getRelayHint(live.event.universalID), "mention"])
-            case .invoice(_):
-                break
-            }
-        }
-
         guard let keypair = getKeypair(), let privkey = keypair.hexVariant.privkey else { return nil }
         
-        pubkeysToTag.remove(keypair.hexVariant.pubkey) // Don't tag yourself
+        return createNostrObjectAndSign(
+            pubkey: keypair.hexVariant.pubkey,
+            privkey: privkey,
+            content: postingText,
+            kind: 1,
+            tags: tags,
+            createdAt: Int64(Date().timeIntervalSince1970)
+        )
+    }
+    
+    static func paidPost(
+        _ draft: NoteDraft,
+        ciphertextBase64: String,
+        replyingToObject: PrimalFeedPost?,
+        embeddedElements: [PostEmbedPreview],
+        price: Int,
+        previewContent: String,
+        thumbnailURL: String?,
+        ivBase64: String,
+        contentType: String,
+        zapAddress: String?,
+        accessType: String = "one_off"
+    ) -> (paid: NostrObject, preview: NostrObject)? {
+        guard let keypair = getKeypair(), let privkey = keypair.hexVariant.privkey else { return nil }
         
-        allTags += pubkeysToTag.map { ["p", $0, RelayHintManager.instance.userRelays[$0]?.first ?? "", "mention"] }
-        allTags += draft.text.extractHashtags().map({ ["t", $0.dropFirst().string] })
+        var paidTags = buildDefaultPostTags(draft: draft, replyingToObject: replyingToObject, embeddedElements: embeddedElements)
+        paidTags.append(["access", accessType])
+        paidTags.append(["price", "\(price)", "sats"])
+        paidTags.append(["creator", keypair.hexVariant.pubkey])
+        paidTags.append(["iv", ivBase64])
+        paidTags.append(["content-type", contentType])
+        if let thumbnailURL {
+            paidTags.append(["thumbnail", thumbnailURL])
+        }
+        if let zapAddress, !zapAddress.isEmpty {
+            paidTags.append(["zap", zapAddress])
+        }
         
-        return createNostrObjectAndSign(pubkey: keypair.hexVariant.pubkey, privkey: privkey, content: postingText, kind: 1, tags: allTags, createdAt: Int64(Date().timeIntervalSince1970))
-
+        let timestamp = Int64(Date().timeIntervalSince1970)
+        
+        guard let paidEvent = createNostrObjectAndSign(
+            pubkey: keypair.hexVariant.pubkey,
+            privkey: privkey,
+            content: ciphertextBase64,
+            kind: 55,
+            tags: paidTags,
+            createdAt: timestamp
+        ) else { return nil }
+        
+        var previewTags: [[String]] = [
+            ["e", paidEvent.id],
+            ["access", accessType],
+            ["price", "\(price)", "sats"]
+        ]
+        
+        if let thumbnailURL {
+            previewTags.append(["thumbnail", thumbnailURL])
+        }
+        
+        guard let previewEvent = createNostrObjectAndSign(
+            pubkey: keypair.hexVariant.pubkey,
+            privkey: privkey,
+            content: previewContent,
+            kind: 54,
+            tags: previewTags,
+            createdAt: timestamp
+        ) else { return nil }
+        
+        return (paidEvent, previewEvent)
     }
     
     static func purchasePrimalPremium(pickedName: String, transaction: Transaction, verification: String) -> NostrObject? {

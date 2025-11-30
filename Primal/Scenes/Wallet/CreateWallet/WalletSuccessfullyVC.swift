@@ -35,6 +35,7 @@ class WalletSuccessfullyVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
         self.stopTimer()
     }
 
@@ -43,8 +44,7 @@ class WalletSuccessfullyVC: UIViewController {
             self.counter -= 1
             self.lblTime.text = "Redirecting automatically in \(self.counter) seconds...."
             if self.counter < 1{
-                self.timer?.invalidate()
-                self.sendWallet()
+                
             }
         }
     }
@@ -53,24 +53,4 @@ class WalletSuccessfullyVC: UIViewController {
         self.timer?.invalidate()
         self.timer = nil
     }
-    
-    @IBAction func btnActionGoWallet(_ sender: UIButton) {
-        self.timer?.invalidate()
-        self.sendWallet()
-    }
-    
-    func sendWallet(){
-        guard let navigationController = self.navigationController else { return }
-
-        // First, keep the root view controller
-        let rootVC = navigationController.viewControllers.first!
-
-        // Create WalletDashboardVC instance
-        let walletVC = WalletDashboardVC()
-
-        // Set the stack to exactly two view controllers
-        navigationController.setViewControllers([rootVC, walletVC], animated: true)
-
-    }
-
 }
