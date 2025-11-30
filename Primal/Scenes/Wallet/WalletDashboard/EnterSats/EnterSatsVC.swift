@@ -65,11 +65,10 @@ class EnterSatsVC: UIViewController {
         if (Int(self.satsTextField.text ?? "0") ?? 0) > 0{
             self.warningLabel.isHidden = true
             Task{
-                if self.inputType == .bitcoinAddress(.init(address: self.address, network: .bitcoin, source: .init(bip21Uri: nil, bip353Address: nil))){
-                    await BreezViewModel.shared.sendBitcoin(address: self.address, sats: (self.satsTextField.text ?? "0"))
-                }
-                else{
-                    await BreezViewModel.shared.sendLightning(invoice: self.address, sats: (self.satsTextField.text ?? "0"))
+              let response = await BreezViewModel.shared.preparingPayment(invoice: self.address, sats: (self.satsTextField.text ?? "0"))
+                if response.2 != nil{
+                    self.warningLabel.text = response.2
+                    self.warningLabel.isHidden = false
                 }
             }
         }

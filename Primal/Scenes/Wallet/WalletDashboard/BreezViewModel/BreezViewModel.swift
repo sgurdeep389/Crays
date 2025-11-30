@@ -164,44 +164,71 @@ class BreezViewModel{
         }
     }
     
-    func sendBitcoin(address: String, sats: String) async {
+    func preparingPayment(invoice: String, sats: String) async ->(PrepareLnurlPayResponse?,PrepareSendPaymentResponse?,String?){
         do {
-            let paymentRequest = address
-            // Set the amount you wish the pay the receiver (requires 'import BigNumber')
-            let amountSats = BInt(sats)
-            
-            let prepareResponse = try await self.sdk?.prepareSendPayment(request: .init(paymentRequest: paymentRequest,amount: amountSats))
-
-            if case let .bitcoinAddress(_, feeQuote) = prepareResponse?.paymentMethod {
-                let slowFeeSats = feeQuote.speedSlow.userFeeSat + feeQuote.speedSlow.l1BroadcastFeeSat
-                let mediumFeeSats = feeQuote.speedMedium.userFeeSat + feeQuote.speedMedium.l1BroadcastFeeSat
-                let fastFeeSats = feeQuote.speedFast.userFeeSat + feeQuote.speedFast.l1BroadcastFeeSat
-                print("Slow Fees: \(slowFeeSats) sats")
-                print("Medium Fees: \(mediumFeeSats) sats")
-                print("Fast Fees: \(fastFeeSats) sats")
+            let inputType = try await self.sdk?.parse(input: invoice)
+            print(inputType,"inputType")
+            if case .lightningAddress(v1: let details) = inputType {
+                let amountSats: UInt64 = UInt64(sats) ?? 0
+                let optionalComment = "<comment>"
+                let payRequest = details.payRequest
+                let optionalValidateSuccessActionUrl = true
+                
+                let request = PrepareLnurlPayRequest(
+                    amountSats: amountSats,
+                    payRequest: payRequest,
+                    comment: optionalComment,
+                    validateSuccessActionUrl: optionalValidateSuccessActionUrl
+                )
+                let response = try await self.sdk?.prepareLnurlPay(request: request)
+                // If the fees are acceptable, continue to create the LNURL Pay
+                let feesSat = response?.feeSats
+                print("Fees: \(response?.successAction) sats")
+                print("Fees: \(feesSat) sats")
+                return (response,nil,nil)
             }
-        }
-        catch {
+            else if case .bitcoinAddress(v1: let details) = inputType {
+                let amountSats: BInt = BInt(sats) ?? 0
+                let optionalComment = "<comment>"
+                let optionalValidateSuccessActionUrl = true
+                let response = try await self.sdk?.prepareSendPayment(request: .init(paymentRequest: details.address,amount: amountSats))
+                return (nil,response,nil)
+            }
+            else if case .lnurlPay(v1: let details) = inputType {
+                let amountSats: UInt64 = UInt64(sats) ?? 0
+                let optionalComment = "<comment>"
+                let optionalValidateSuccessActionUrl = true
+                
+                let request = PrepareLnurlPayRequest(
+                    amountSats: amountSats,
+                    payRequest: details,
+                    comment: optionalComment,
+                    validateSuccessActionUrl: optionalValidateSuccessActionUrl
+                )
+                let response = try await self.sdk?.prepareLnurlPay(request: request)
+                // If the fees are acceptable, continue to create the LNURL Pay
+                let feesSat = response?.feeSats
+                print("Fees: \(response?.successAction) sats")
+                print("Fees: \(feesSat) sats")
+                return (response,nil,nil)
+            }
+            else{
+                return (nil,nil,"This payment method is not supported")
+            }
+        } catch {
             print("❌ Failed to get node info:", error.localizedDescription)
+            return (nil,nil,error.localizedDescription)
         }
     }
     
-    func sendLightning(invoice: String, sats: String) async{
+    func sendPayment(response:PrepareLnurlPayResponse) async{
         do {
-            let paymentRequest = invoice
-            // Set the amount you wish the pay the receiver (requires 'import BigNumber')
-            let amountSats = BInt(sats)
-
-            let prepareResponse = try await self.sdk?.prepareSendPayment(request: .init(paymentRequest: paymentRequest,amount: amountSats))
+            let response1 = try await sdk?.lnurlPay(
+                request: LnurlPayRequest(
+                    prepareResponse: response,
+                    idempotencyKey: nil
+                ))
             
-            if case let .bolt11Invoice(_, sparkTransferFeeSats, lightningFeeSats) = prepareResponse?.paymentMethod{
-                // Fees to pay via Lightning
-                print("Lightning Fee: \(lightningFeeSats) sats")
-                // Or fees to pay (if available) via a Spark transfer
-                if let sparkTransferFeeSats = sparkTransferFeeSats {
-                    print("Spark Transfer Fee: \(sparkTransferFeeSats) sats")
-                }
-            }
         } catch {
             print("❌ Failed to get node info:", error.localizedDescription)
         }

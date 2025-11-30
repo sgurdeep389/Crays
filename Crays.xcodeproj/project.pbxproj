@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 90;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -774,23 +774,27 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		B907D39E2DB9753F002B86DA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolder = Frameworks;
+			dstSubfolderSpec = 10;
 			files = (
 				B9CC1ADF2DF38ECB0020BFC2 /* PrimalShared.xcframework in Embed Frameworks */,
 				CA68B9BB2ED4CEC600C5BE59 /* GRDB-dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9DFA0AE2D7EFBC9002C6F34 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolder = PlugIns;
+			dstSubfolderSpec = 13;
 			files = (
 				B9658AF32D9FF9460037E5DB /* CraysNotifications.appex in Embed Foundation Extensions */,
 				B9DFA0AD2D7EFBC9002C6F34 /* primalShare.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -1596,6 +1600,7 @@
 /* Begin PBXFrameworksBuildPhase section */
 		939330EF29A3E36F003954C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				CAB6C96C2ED222D5000B2951 /* QRCode in Frameworks */,
 				B9CC1ADE2DF38ECB0020BFC2 /* PrimalShared.xcframework in Frameworks */,
@@ -1615,26 +1620,35 @@
 				CAB6C95A2ED2226E000B2951 /* GenericJSON in Frameworks */,
 				CA68B9BA2ED4CEC600C5BE59 /* GRDB-dynamic in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		939330FF29A3E370003954C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9393310929A3E370003954C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9658AE92D9FF9460037E5DB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9DFA0A02D7EFBC9002C6F34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -3734,6 +3748,8 @@
 				9393310429A3E370003954C2 /* PBXTargetDependency */,
 			);
 			name = CraysTests;
+			packageProductDependencies = (
+			);
 			productName = PrimalTests;
 			productReference = 9393310229A3E370003954C2 /* CraysTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -3752,6 +3768,8 @@
 				9393310E29A3E370003954C2 /* PBXTargetDependency */,
 			);
 			name = CraysUITests;
+			packageProductDependencies = (
+			);
 			productName = PrimalUITests;
 			productReference = 9393310C29A3E370003954C2 /* CraysUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -3766,10 +3784,14 @@
 			);
 			buildRules = (
 			);
+			dependencies = (
+			);
 			fileSystemSynchronizedGroups = (
 				B9658AED2D9FF9460037E5DB /* PrimalNotifications */,
 			);
 			name = CraysNotifications;
+			packageProductDependencies = (
+			);
 			productName = PrimalNotifications;
 			productReference = B9658AEC2D9FF9460037E5DB /* CraysNotifications.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -3784,10 +3806,14 @@
 			);
 			buildRules = (
 			);
+			dependencies = (
+			);
 			fileSystemSynchronizedGroups = (
 				B9DFA0A42D7EFBC9002C6F34 /* primalShare */,
 			);
 			name = primalShare;
+			packageProductDependencies = (
+			);
 			productName = primalShare;
 			productReference = B9DFA0A32D7EFBC9002C6F34 /* primalShare.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -3848,7 +3874,7 @@
 				CA6266802ED37C18006FCC19 /* XCRemoteSwiftPackageReference "breez-sdk-spark-swift" */,
 				CA68B9B82ED4CEB800C5BE59 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
-			preferredProjectObjectVersion = 90;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 939330F329A3E36F003954C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3865,6 +3891,7 @@
 /* Begin PBXResourcesBuildPhase section */
 		939330F029A3E36F003954C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				CA1687A42ED360AC006726E9 /* WalletSuccessfullyVC.xib in Resources */,
 				9EB219E62A0676760037C3E5 /* RobotoFlex-All.ttf in Resources */,
@@ -3920,32 +3947,42 @@
 				9393313B29A3E5D3003954C2 /* RobotoFlex-Regular.ttf in Resources */,
 				B9B1AB9A2B2C730400837312 /* regions.json in Resources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9393310029A3E370003954C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9393310A29A3E370003954C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9658AEA2D9FF9460037E5DB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9DFA0A12D7EFBC9002C6F34 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		939330EE29A3E36F003954C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				B91EF0EB2CED1B4B00299ECF /* PremiumLearnMoreHeaderCell.swift in Sources */,
 				930497A329FAD69B003938F2 /* Mentions.swift in Sources */,
@@ -4600,31 +4637,40 @@
 				B9318F602B6048FE0044B6AA /* SettingsEditZapController.swift in Sources */,
 				B9DAA45A2D4A634500B00B82 /* SettingsExternalNwcController.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		939330FE29A3E370003954C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				9E8834CE2A37BFB9005DB548 /* NSRangeTests.swift in Sources */,
 				B94B18A02D5E233600A932CE /* RegexTests.swift in Sources */,
 				9393310729A3E370003954C2 /* PrimalTests.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9393310829A3E370003954C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				9393311129A3E370003954C2 /* PrimalUITests.swift in Sources */,
 				9393311329A3E370003954C2 /* PrimalUITestsLaunchTests.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9658AE82D9FF9460037E5DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B9DFA09F2D7EFBC9002C6F34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -4652,7 +4698,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9393311429A3E370003954C2 /* Debug configuration for PBXProject "Crays" */ = {
+		9393311429A3E370003954C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4716,7 +4762,7 @@
 			};
 			name = Debug;
 		};
-		9393311529A3E370003954C2 /* Release configuration for PBXProject "Crays" */ = {
+		9393311529A3E370003954C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4775,7 +4821,7 @@
 			};
 			name = Release;
 		};
-		9393311729A3E370003954C2 /* Debug configuration for PBXNativeTarget "Crays" */ = {
+		9393311729A3E370003954C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4832,7 +4878,7 @@
 			};
 			name = Debug;
 		};
-		9393311829A3E370003954C2 /* Release configuration for PBXNativeTarget "Crays" */ = {
+		9393311829A3E370003954C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4887,7 +4933,7 @@
 			};
 			name = Release;
 		};
-		9393311A29A3E370003954C2 /* Debug configuration for PBXNativeTarget "CraysTests" */ = {
+		9393311A29A3E370003954C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -4907,7 +4953,7 @@
 			};
 			name = Debug;
 		};
-		9393311B29A3E370003954C2 /* Release configuration for PBXNativeTarget "CraysTests" */ = {
+		9393311B29A3E370003954C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -4927,7 +4973,7 @@
 			};
 			name = Release;
 		};
-		9393311D29A3E370003954C2 /* Debug configuration for PBXNativeTarget "CraysUITests" */ = {
+		9393311D29A3E370003954C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -4945,7 +4991,7 @@
 			};
 			name = Debug;
 		};
-		9393311E29A3E370003954C2 /* Release configuration for PBXNativeTarget "CraysUITests" */ = {
+		9393311E29A3E370003954C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -4963,7 +5009,7 @@
 			};
 			name = Release;
 		};
-		B9658AF42D9FF9460037E5DB /* Debug configuration for PBXNativeTarget "CraysNotifications" */ = {
+		B9658AF42D9FF9460037E5DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PrimalNotifications/PrimalNotifications.entitlements;
@@ -4994,7 +5040,7 @@
 			};
 			name = Debug;
 		};
-		B9658AF52D9FF9460037E5DB /* Release configuration for PBXNativeTarget "CraysNotifications" */ = {
+		B9658AF52D9FF9460037E5DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PrimalNotifications/PrimalNotifications.entitlements;
@@ -5024,7 +5070,7 @@
 			};
 			name = Release;
 		};
-		B9DFA0AF2D7EFBC9002C6F34 /* Debug configuration for PBXNativeTarget "primalShare" */ = {
+		B9DFA0AF2D7EFBC9002C6F34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = primalShare/primalShare.entitlements;
@@ -5055,7 +5101,7 @@
 			};
 			name = Debug;
 		};
-		B9DFA0B02D7EFBC9002C6F34 /* Release configuration for PBXNativeTarget "primalShare" */ = {
+		B9DFA0B02D7EFBC9002C6F34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = primalShare/primalShare.entitlements;
@@ -5091,49 +5137,55 @@
 		939330ED29A3E36F003954C2 /* Build configuration list for PBXProject "Crays" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9393311429A3E370003954C2 /* Debug configuration for PBXProject "Crays" */,
-				9393311529A3E370003954C2 /* Release configuration for PBXProject "Crays" */,
+				9393311429A3E370003954C2 /* Debug */,
+				9393311529A3E370003954C2 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		9393311629A3E370003954C2 /* Build configuration list for PBXNativeTarget "Crays" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9393311729A3E370003954C2 /* Debug configuration for PBXNativeTarget "Crays" */,
-				9393311829A3E370003954C2 /* Release configuration for PBXNativeTarget "Crays" */,
+				9393311729A3E370003954C2 /* Debug */,
+				9393311829A3E370003954C2 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		9393311929A3E370003954C2 /* Build configuration list for PBXNativeTarget "CraysTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9393311A29A3E370003954C2 /* Debug configuration for PBXNativeTarget "CraysTests" */,
-				9393311B29A3E370003954C2 /* Release configuration for PBXNativeTarget "CraysTests" */,
+				9393311A29A3E370003954C2 /* Debug */,
+				9393311B29A3E370003954C2 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		9393311C29A3E370003954C2 /* Build configuration list for PBXNativeTarget "CraysUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9393311D29A3E370003954C2 /* Debug configuration for PBXNativeTarget "CraysUITests" */,
-				9393311E29A3E370003954C2 /* Release configuration for PBXNativeTarget "CraysUITests" */,
+				9393311D29A3E370003954C2 /* Debug */,
+				9393311E29A3E370003954C2 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B9658AF72D9FF9460037E5DB /* Build configuration list for PBXNativeTarget "CraysNotifications" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B9658AF42D9FF9460037E5DB /* Debug configuration for PBXNativeTarget "CraysNotifications" */,
-				B9658AF52D9FF9460037E5DB /* Release configuration for PBXNativeTarget "CraysNotifications" */,
+				B9658AF42D9FF9460037E5DB /* Debug */,
+				B9658AF52D9FF9460037E5DB /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B9DFA0B22D7EFBC9002C6F34 /* Build configuration list for PBXNativeTarget "primalShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B9DFA0AF2D7EFBC9002C6F34 /* Debug configuration for PBXNativeTarget "primalShare" */,
-				B9DFA0B02D7EFBC9002C6F34 /* Release configuration for PBXNativeTarget "primalShare" */,
+				B9DFA0AF2D7EFBC9002C6F34 /* Debug */,
+				B9DFA0B02D7EFBC9002C6F34 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
