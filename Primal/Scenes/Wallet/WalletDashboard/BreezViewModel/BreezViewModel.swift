@@ -221,18 +221,18 @@ class BreezViewModel{
         }
     }
     
-    func sendPayment(response:PrepareLnurlPayResponse) async{
-        do {
-            let response1 = try await sdk?.lnurlPay(
-                request: LnurlPayRequest(
-                    prepareResponse: response,
-                    idempotencyKey: nil
-                ))
-            
-        } catch {
-            print("❌ Failed to get node info:", error.localizedDescription)
-        }
-    }
+//    func sendPayment(response:PrepareLnurlPayResponse) async{
+//        do {
+//            let response1 = try await sdk?.lnurlPay(
+//                request: LnurlPayRequest(
+//                    prepareResponse: response,
+//                    idempotencyKey: nil
+//                ))
+//            
+//        } catch {
+//            print("❌ Failed to get node info:", error.localizedDescription)
+//        }
+//    }
     
     func logOut(){
         do {

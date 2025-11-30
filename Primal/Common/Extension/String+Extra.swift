@@ -198,6 +198,15 @@ extension String : Identifiable {
         return "https://\(host)/.well-known/lnurlp/\(lnurlp)"
     }
     
+    var trimmed: String {
+        trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    var nilIfEmpty: String? {
+        let trimmedValue = trimmed
+        return trimmedValue.isEmpty ? nil : trimmedValue
+    }
+    
     func extractHashtags() -> [String] {
         guard let regex = try? NSRegularExpression(pattern: "(?<!\\S)#\\w+", options: []) else { return [] }
         
